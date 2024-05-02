@@ -1,0 +1,15 @@
+.cardprincipal {
+  background-color: rgb(197, 255, 236);
+  border: 1px solid black;
+  list-style: none;
+  padding: 10px;
+  margin: 10px auto;
+  display: grid;
+  border-radius: 10%;
+  text-align: center;
+}
+
+.contenedorimagen {
+  width: 200px;
+  height: 200px;
+}

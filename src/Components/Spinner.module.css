@@ -1,0 +1,15 @@
+.icono {
+    /* margin-left: 50%; */
+    font-size: 70px;
+    animation: girar 1s infinite linear;
+    color: #00857d;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

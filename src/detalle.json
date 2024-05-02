@@ -1,0 +1,16 @@
+[{
+    
+      
+    "id": 4,
+    "objects": [
+      {
+        "event_id": 1,
+        "title": "Evento 1",
+        "description": "Descripción del evento 1",
+        "datetime": "2024-05-01 10:00",
+        "location": "Lugar del evento 1",
+        "city": "Ciudad del evento 1",
+        "image": "https://via.placeholder.com/300"
+      }
+    ]
+}]
