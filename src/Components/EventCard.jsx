@@ -26,7 +26,7 @@ export  const MeGustaButton = () => {
 
   return (
     <button onClick={handleMeGustaClick} style={{ backgroundColor: 'transparent', border: 'none',cursor:'' }}>
-      <FaHeart color={meGusta ? 'crimson' : 'rgba(0,71,171,1)'} style={{ transition: 'color 0.3s' }} size={24} />
+      <FaHeart color={meGusta ? 'rgba(0,71,171,1)' : '#00857d'} style={{ transition: 'color 0.3s' }} size={24} />
     </button>
   );
 };
@@ -46,7 +46,7 @@ export  const QuieroConocerGente = () => {
 
   return (
     <button onClick={handleConocerClick} style={{ backgroundColor: 'transparent', border: 'none',cursor:'' }}>
-      <FaUsers    color={conocer ? 'crimson' : 'rgba(0,71,171,1)'} style={{ transition: 'color 0.3s' }} size={24} />
+      <FaUsers    color={conocer ? 'rgba(0,71,171,1)' : '#00857d'} style={{ transition: 'color 0.3s' }} size={24} />
     </button>
   );
 };
@@ -71,7 +71,7 @@ export const CompartirEventoButton = ({ evento }) => {
 
   return (
     <button onClick={handleCompartirClick} aria-label="Compartir" style={{border:"0px",marginBottom:"8px",backgroundColor:"transparent"}}>
-    <FaShareAlt  style={{color:'rgba(0,71,171,1)',backgroundColor:"transparent"} }  size={24}/>
+    <FaShareAlt  style={{color:'#00857d',backgroundColor:"transparent"} }  size={24}/>
   </button>
   );
 };
@@ -110,29 +110,32 @@ export function EventCard({
   >
 
 <Link to={"/detalle/" + activity.event_id}>
-  <Card.Img  className="imageCard" variant="top" src="/fondo.webp" />
+  {/* <Card.Img  className="imageCard" variant="top" src="/fondo.webp" /> */}
+  <Card.Img  className="imageCard" variant="top" src="https://img.freepik.com/vector-premium/azulejo-decorativo-azul-blanco-patron_52756-246.jpg?w=900" />
+
   {/* <Card.Img variant="top" src={`${activity.image}`} /> */}
   </Link>
   <Link to={"/detalle/" + activity.event_id} style={{textDecoration:'none'}}>
 
   <Card.Body>
-    <Card.Title style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>{activity.title}</Card.Title>
-    <Card.Text  style={{color:"#00857d",fontSize:"1.1em"}} >
+    <Card.Title style={{color:"#00857d",fontSize:"1.8em"}}>{activity.title}</Card.Title>
+    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}} >
     {activity.description}
     </Card.Text>
-    <Card.Text  style={{color:"#00857d",fontSize:"1.1em"}}>
+    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
     {activity.datetime}
-    </Card.Text>    <Card.Text  style={{color:"#00857d",fontSize:"1.1em"}}>
+    </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
     {activity.location}
-    </Card.Text>    <Card.Text  style={{color:"#00857d",fontSize:"1.1em"}}>
+    </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
     {activity.city}
     </Card.Text>
     
         </Card.Body>
         </Link>
-        {logeado && <MeGustaButton/>}
+        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton/>}
         <CompartirEventoButton evento={activity} />
-        {logeado && <QuieroConocerGente/>}
+        {logeado && <QuieroConocerGente/>}</div>
+
 
 </Card>
 

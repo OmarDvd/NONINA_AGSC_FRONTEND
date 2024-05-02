@@ -36,10 +36,10 @@ export default function NavigationBar({ toggleState,logeado }) {
 
       <Navbar.Brand as={NavLink} to="/events">
   <div style={{ display: 'flex', alignItems: 'center' }}>
-    <img src="/fondo.webp" style={{ height: '80px', marginRight: '20px', borderRadius: "50%", border: '2px solid red',  }} alt="Granada logo" />
+    <img src="https://img.freepik.com/vector-premium/azulejo-decorativo-azul-blanco-patron_52756-246.jpg?w=900" style={{ height: '80px', marginRight: '20px', borderRadius: "50%" }} alt="Granada logo" />
     <div style={{ borderLeft: '2px solid white', paddingLeft: '20px' }}>
-      <h3 style={{ margin: 0, color: 'white', fontFamily: 'cursive' }}>NO NI NÁ </h3>
-      <p style={{ margin: 0, color: 'white', fontFamily: 'sans-serif', fontSize: '12px' }}>Agenda Gastro-Socio-Cultural</p>
+      <h3 style={{ margin: 0, color: 'white', fontFamily: 'Granaina',fontSize: '2.5em' }}>NO NI NÁ </h3>
+      <p style={{ margin: 0, color: 'white', fontFamily: 'Granaina', fontSize: '0.7em' }}>Agenda Gastro-Socio-Cultural</p>
     </div>
   </div>
 </Navbar.Brand>

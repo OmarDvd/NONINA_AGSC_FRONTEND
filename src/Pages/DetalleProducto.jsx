@@ -171,27 +171,28 @@ export function DetalleProducto({
     backgroundColor: 'rgba(255, 255, 255, 1)',
     padding: '10px',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,71,171,1), 0 4px 8px rgba(0,71,171,1), inset 0 0 10px rgba(0, 71, 113, 0.3)'
+    boxShadow: '0 0 10px rgba(0,71,171,1), 0 4px 8px rgba(0,71,171,1), inset 0 0 10px rgba(0, 71, 113, 0.3)',
+    zIndex:1
   }}>
       <div className="row">
         <div className="col-sm-11 col-md-6 col-lg-4   ">
           {/* <Card.Img src={primerElemento} style={{ width: '100%', height: 'auto' }} /> */}
-              <Card.Img
-                src="/fondo.webp" // Obteniendo el primer elemento de la cadena dividida
+              <Card.Img className="mt-lg-3"
+                src=
+                "https://img.freepik.com/vector-premium/azulejo-decorativo-azul-blanco-patron_52756-246.jpg?w=900" // Obteniendo el primer elemento de la cadena dividida
                 style={{ width: '100%', height: 'auto' }}
               />
 
         </div>
         <div className="col-sm-6 col-md-6 col-lg-8" >
           <Card.Body>
-            <Card.Title className="grana" style={{paddingBottom:"15px"}}><h1><b>{evento[0].title}</b></h1></Card.Title>
+            <Card.Title className=""  style={{paddingBottom:"15px"}}><h1><b style={{color:"#00857d", fontFamily:"Granaina", fontSize:"1em"}}>{evento[0].title}</b></h1></Card.Title>
             {/* <Card.Subtitle className="mb-2 text-muted">Sesión ID: {sesion[0].sesion_id}</Card.Subtitle> */}
-            <Card.Text  style={{color:'#00857d',fontSize:"1.4em"}}><b style={{color:'rgba(0,71,171,1)'}}>Director:</b> {evento[0].title}</Card.Text>
-            <Card.Text style={{color:'#00857d',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}>Género:</b> {evento[0].description}</Card.Text>
-            <Card.Text style={{color:'#00857d',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}>Descripción:</b> {evento[0].datetime}</Card.Text>
-            <Card.Text style={{color:'#00857d',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}>Puntuación:</b> {evento[0].location}</Card.Text>
-            <Card.Text style={{color:'#00857d',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}>Plazas disponibles:</b> {evento[0].city}</Card.Text>
-            <Card.Text style={{color:'#00857d',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}>Tipo:</b> Concierto</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].description}</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].datetime}</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].location}</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].city}</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> Concierto</Card.Text>
             {logeado && <MeGustaButton/>}
         <CompartirEventoButton evento={evento[0]} />
   </Card.Body>
