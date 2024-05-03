@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { TextField, Button, RadioGroup, FormControlLabel, Radio,Input } from '@mui/material';
 import { useRef } from "react";
 import { useEffect, useState } from "react";
+import { MapaBuscar } from "../Components/MapaBuscar";
 
 
 export function FormularioCreateHookEvent(){
@@ -52,7 +53,7 @@ export function FormularioCreateHookEvent(){
     paddingTop:"20px",
     borderRadius: '1px',
     color: 'black',
-    boxShadow: '0 0 1px 2px rgba(0, 71, 171, 1)',
+    boxShadow: '0 0 1px 2px rgba(0, 71, 171, 1)'
   }}>
 <p><Input
         type="file"
@@ -165,6 +166,11 @@ export function FormularioCreateHookEvent(){
 </p>
 
   {/* Agregar aquí el campo para seleccionar la ubicación en el mapa */}
+
+<MapaBuscar/>
+
+
+
 
   <Button type="submit" className="mt-3" variant="contained" style={{ backgroundColor: 'rgba(0,71,171,1)', color: 'white' }}>
     Crear evento

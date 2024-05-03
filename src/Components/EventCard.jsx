@@ -9,7 +9,7 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import { FaUsers } from 'react-icons/fa';
 import { FaHandshake } from 'react-icons/fa';
 import { FaShareAlt } from 'react-icons/fa';
-
+import {MapCoordinates} from "./MapCoordinates"
 
 
 export  const MeGustaButton = () => {
@@ -104,7 +104,7 @@ export function EventCard({
 
   return(
     // <Link to={"/detalle/" + "a"}>
-  <Card className="cardStyles" style={{ margin:40,marginTop:40,width: '13vw', height: 'auto',display:"inline-block"}}
+  <Card className="cardStyles" style={{ margin:40,marginTop:40,width: '13vw', height: 'auto',display:"inline-block",zIndex:0}}
  
 
   >
@@ -131,7 +131,7 @@ export function EventCard({
     </Card.Text>
     
         </Card.Body>
-        </Link>
+        </Link> 
         <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton/>}
         <CompartirEventoButton evento={activity} />
         {logeado && <QuieroConocerGente/>}</div>

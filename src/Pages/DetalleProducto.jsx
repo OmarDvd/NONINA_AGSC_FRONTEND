@@ -5,6 +5,7 @@ import { Spinner } from "../Components/Spinner";
 import { EventCard } from "../Components/EventCard";
 import NavigationBar from "../Components/NavigationBar";
 import { Footer } from "../Components/Footer";
+import {MapCoordinates} from "../Components/MapCoordinates"
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -20,8 +21,73 @@ import "../styles.css";
 
 import   {MeGustaButton}  from "../Components/EventCard";
 import {CompartirEventoButton} from "../Components/EventCard";
+import {QuieroConocerGente} from "../Components/EventCard";
 
 
+// import L from 'leaflet';
+// import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+// import 'leaflet/dist/leaflet.css';
+// import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
+// import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
+
+// export function Mapa() {
+//   const [coordenadas, setCoordenadas] = useState(null);
+//   const customIconUrl = '/marcador-de-posicion.png';
+
+
+//   const customIcon = L.icon({
+//     iconUrl: customIconUrl,
+//     iconSize: [32, 32], // Tamaño del icono
+//     iconAnchor: [16, 32], // Punto de anclaje del icono
+//     popupAnchor: [0, -32] // Punto de anclaje del popup
+//   });
+
+//   function handleMapClick(event) {
+//     setCoordenadas(event.latlng);
+//     console.log(coordenadas);
+//   }
+
+//   return (
+//     <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "400px" }}>
+//       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+//       <MarcadorSeleccion onClick={handleMapClick} />
+//       {coordenadas && <Marker position={coordenadas} icon={customIcon} ><Popup>Coordenadas: {coordenadas.toString()}</Popup></Marker>}
+//       <LeafletControlGeocoder />
+//     </MapContainer>
+//   );
+// }
+
+// function MarcadorSeleccion({ onClick }) {
+//   useMapEvents({
+//     click: (event) => {
+//       onClick(event);
+      
+//     },
+//   });
+//   return null;
+// }
+
+// function LeafletControlGeocoder() {
+//   const map = useMapEvents({
+//     geocoder: false
+//   });
+  
+//   // Asegúrate de que el control de búsqueda se añada solo una vez al mapa
+//   const addGeocoderToMap = () => {
+//     if (!map.geocoderAdded) {
+//       map.geocoderAdded = true;
+//       const geocoder = L.Control.geocoder({
+//         defaultMarkGeocode: false
+//       }).on('markgeocode', function (e) {
+//         map.setView(e.geocode.center, map.getZoom());
+//       }).addTo(map);
+//     }
+//   };
+  
+//   map.whenReady(addGeocoderToMap);
+  
+//   return null;
+// }
 
 
 
@@ -175,7 +241,7 @@ export function DetalleProducto({
     zIndex:1
   }}>
       <div className="row">
-        <div className="col-sm-11 col-md-6 col-lg-4   ">
+        <div className="col-sm-12 col-md-4 col-lg-4   ">
           {/* <Card.Img src={primerElemento} style={{ width: '100%', height: 'auto' }} /> */}
               <Card.Img className="mt-lg-3"
                 src=
@@ -184,7 +250,7 @@ export function DetalleProducto({
               />
 
         </div>
-        <div className="col-sm-6 col-md-6 col-lg-8" >
+        <div className="col-sm-12 col-md-4 col-lg-4" >
           <Card.Body>
             <Card.Title className=""  style={{paddingBottom:"15px"}}><h1><b style={{color:"#00857d", fontFamily:"Granaina", fontSize:"1em"}}>{evento[0].title}</b></h1></Card.Title>
             {/* <Card.Subtitle className="mb-2 text-muted">Sesión ID: {sesion[0].sesion_id}</Card.Subtitle> */}
@@ -193,10 +259,21 @@ export function DetalleProducto({
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].location}</Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento[0].city}</Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> Concierto</Card.Text>
-            {logeado && <MeGustaButton/>}
+            
+
+        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton/>}
         <CompartirEventoButton evento={evento[0]} />
+        {logeado && <QuieroConocerGente/>}</div>
+
+        
   </Card.Body>
         </div>
+        <div className="col-sm-12 col-md-4 col-lg-4" >
+
+        <MapCoordinates  latitud={37.70316035454358} longitud={-2.936689659621214} />
+        {/* <Mapa/> */}
+        </div>
+
       </div>
     </Card>
     </div>

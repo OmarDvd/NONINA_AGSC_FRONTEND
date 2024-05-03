@@ -20,7 +20,7 @@ export function CreateEvent(
          
                                     </div> 
                                     
-                                    <div class="px-4 py-3"> 
+                                    <div class="px-4 py-3" > 
                                         <h5 class="mb-3">Crear evento</h5> 
                                         <FormularioCreateHookEvent toggleState={toggleState}  />
 
