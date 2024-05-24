@@ -17,6 +17,7 @@ import NavigationBar from "./Components/NavigationBar";
 // import Rincones from "./Pages/Rincones";
 import Events from "./Pages/Events";
 import {Filtro} from "./Pages/Filtro";
+import {PostPage} from "./Pages/PostPage";
 
 import Login from "./Pages/Login";
 import {CreateEvent} from "./Pages/CreateEvent";
@@ -58,6 +59,7 @@ export default function App() {
                 <Route path="/events" element={<Events toggleState={toggleState} logeado={logeado}/>} />
                 <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} />} />
                 <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
+                <Route path="/postpage" element={<PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
                 <Route path="/createevent" element={<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
                 <Route path="/detalle/:eventID" element={<DetalleProducto logeado={logeado} toggleState={toggleState}/>}></Route>
                 <Route path="/filtrar" element={<Filtro logeado={logeado} toggleState={toggleState}/>}></Route>

@@ -31,7 +31,7 @@ export function FormularioLoginHook({toggleState}){
 
 
             formularioRef.current.reset();
-            alert("Inicio de sesión exitoso");
+            // alert("Inicio de sesión exitoso");
           } else {
             alert("Usuario o contraseña incorrectos");
           }

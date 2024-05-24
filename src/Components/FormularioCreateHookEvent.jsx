@@ -152,7 +152,7 @@ export function FormularioCreateHookEvent(){
 
       <TextField
         id="ubicacion"
-        label="Ubicación en mapa"
+        label="Dirección del lugar/establecimiento"
         variant="outlined"
         margin="normal"
         style={{ width: '50%' }}
@@ -166,7 +166,7 @@ export function FormularioCreateHookEvent(){
 </p>
 
   {/* Agregar aquí el campo para seleccionar la ubicación en el mapa */}
-
+<p className="Granaina fs-2" style={{color:"rgba(0,71,171,1)"}} >Busca y marca abajo en el mapa para más exactitud</p>
 <MapaBuscar/>
 
 

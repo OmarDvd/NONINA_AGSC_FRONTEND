@@ -172,10 +172,10 @@ export default function Rincones({rincones, setRincones}) {
     justifyContent:"space-between"}}>
       <div style={{
     width: "35%"}}>
-      <img style={{ width: "100%" }} src="albaicin.jpg" alt="background" />
+      <img style={{ width: "100%" }} src="https://assets.buendiatours.com/s3fs-public/styles/gallery_mobile_800_580_/public/2023-10/visita-guiada-albaicin-sacromonte_espectaculo-flamenco_granada_cuevas_excursion_andalucia_buendia%20%284%29.jpg.webp?VersionId=NtVvR6N02iYkO785ogx6DpaHnW4Yh7Jn&itok=VMwFhhbo" alt="background" />
 
       </div>
-<p className="granaRegular" >Visita el barrio del albaicín</p>
+<p className="granaRegular" >Piérdete por el barrio del Realejo</p>
   </div>
 </Plx>
 
@@ -208,7 +208,7 @@ export default function Rincones({rincones, setRincones}) {
     display: "flex",
     justifyContent:"space-between"}}>
 
-<p className="granaRegular">Conoce los lugares más puros de la ciudad</p>
+<p className="granaRegular">Conoce los lugares más puros</p>
 <div style={{
     width: "35%"}}>
       <img style={{ width: "100%" }} src="amapola.jpg" alt="background" />
@@ -257,11 +257,11 @@ export default function Rincones({rincones, setRincones}) {
       <img style={{ width: "100%" }} src="albaicin.jpg" alt="background" />
 
       </div>
-<p className="granaRegular">Visita el barrio del albaicín</p>
+<p className="granaRegular">Visita el barrio del Albaicín</p>
   </div>
 </Plx>
 
-
+{/* 
 
 <Plx
   parallaxData={[
@@ -290,13 +290,13 @@ export default function Rincones({rincones, setRincones}) {
     display: "flex",
     justifyContent:"space-between"}}>
 
-<p className="granaRegular">Conoce los lugares más puros de la ciudad</p>
+<p className="granaRegular">Conoce los lugares más puros</p>
 <div style={{
     width: "35%"}}>
       <img style={{ width: "100%" }} src="amapola.jpg" alt="background" />
 
       </div>
-  </div></Plx>
+  </div></Plx> */}
 
 
 
@@ -388,12 +388,7 @@ export default function Rincones({rincones, setRincones}) {
 <div>
 
 <p className="granaBoton">
-  {/* <button style={{
-    background: "rgba(0, 71, 171, 1)",
-    padding:"10px"}}
-    className="granaBoton">
-    Pulsa para acceder
-  </button> */}
+
   <a href="#target" style={{
     background: "rgba(0, 71, 171, 1)",
     textDecoration:"none",

@@ -38,7 +38,7 @@ export function CreateEvent(
         <div class="container  d-flex ">
 
     
-<div className="mt-5 me-5"><h1 className="granaRegular">Vocabulario granaíno</h1></div>
+{/* <div className="mt-5 me-5"><h1 className="granaRegular">Vocabulario granaíno</h1></div> */}
 <div className="typewriter mt-5 ms-5">
   <h1 className="grana">Me encarta</h1>
 </div>

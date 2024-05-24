@@ -65,6 +65,9 @@ export default function NavigationBar({ toggleState,logeado }) {
     Ir a mi perfil
   </Nav.Link>
 
+  <Nav.Link as={NavLink} to="/postpage" style={{ fontSize: "1.5em" }} className="ms-3 ps-3">
+    Socialicemos
+  </Nav.Link>
   
     <Nav.Link as={NavLink} to="/createevent" style={{ fontSize: "1.5em" }} className="ms-3 ps-3">
     Crear evento

@@ -55,7 +55,7 @@ export  const QuieroConocerGente = () => {
 export const CompartirEventoButton = ({ evento }) => {
   const handleCompartirClick = () => {
     const url = window.location.href; // Obtener la URL actual de la página
-    const texto = `¡No te pierdas este evento! ${evento.title} el ${evento.datetime} en ${evento.description}. Más detalles: ${url}`;
+    const texto = `¡No te pierdas este evento! ${evento.title} el ${evento.date} en ${evento.description}. Más detalles: ${url}`;
     if (navigator.share) {
       navigator.share({
         title: 'Compartir evento',
@@ -109,13 +109,13 @@ export function EventCard({
 
   >
 
-<Link to={"/detalle/" + activity.event_id}>
+<Link to={"/detalle/" + activity.id}>
   {/* <Card.Img  className="imageCard" variant="top" src="/fondo.webp" /> */}
-  <Card.Img  className="imageCard" variant="top" src="https://img.freepik.com/vector-premium/azulejo-decorativo-azul-blanco-patron_52756-246.jpg?w=900" />
+  <Card.Img  className="imageCard" variant="top" src={activity.imageEvento} />
 
   {/* <Card.Img variant="top" src={`${activity.image}`} /> */}
   </Link>
-  <Link to={"/detalle/" + activity.event_id} style={{textDecoration:'none'}}>
+  <Link to={"/detalle/" + activity.id} style={{textDecoration:'none'}}>
 
   <Card.Body>
     <Card.Title style={{color:"#00857d",fontSize:"1.8em"}}>{activity.title}</Card.Title>
@@ -123,11 +123,11 @@ export function EventCard({
     {activity.description}
     </Card.Text>
     <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.datetime}
+    {activity.date}
     </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.location}
+    {activity.placeLabel}
     </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.city}
+    {activity.municipalityName}
     </Card.Text>
     
         </Card.Body>

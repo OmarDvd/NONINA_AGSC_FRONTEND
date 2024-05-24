@@ -6,7 +6,7 @@
     "objects": [
       {
         "event_id": 1,
-        "title": "Evento 1  Cambia evento",
+        "title": "Filtro evento 1",
         "description": "Concierto",
         "datetime": "2024-05-01 10:00",
         "location": "Lugar del 2eveeeeento 1",
@@ -15,7 +15,7 @@
       },
       {
       "event_id": 2,
-      "title": "Evento 2",
+      "title": "Filtro evento 2",
       "description": "Jam sesion",
       "datetime": "2024-05-02 11:00",
       "location": "Lugar del evento 2",
@@ -24,7 +24,7 @@
     },
     {
       "event_id": 3,
-      "title": "Evento 3",
+      "title": "Filtro evento 3",
       "description": "Degustación",
       "datetime": "2024-05-03 12:00",
       "location": "Lugar del evento 3",
@@ -33,7 +33,7 @@
     },
     {
       "event_id": 4,
-      "title": "Evento 4",
+      "title": "Filtro evento 4",
       "description": "Degustación",
       "datetime": "2024-05-04 13:00",
       "location": "Lugar del evento 4",
@@ -42,7 +42,7 @@
     },
     {
       "event_id": 5,
-      "title": "Evento 5",
+      "title": "Filtro evento 5",
       "description": "Degustación",
       "datetime": "2024-05-05 14:00",
       "location": "Lugar del evento 5",
@@ -51,7 +51,7 @@
     },
     {
       "event_id": 6,
-      "title": "Evento 6",
+      "title": "Filtro evento 6",
       "description": "Degustación",
       "datetime": "2024-05-06 15:00",
       "location": "Lugar del evento 6",
@@ -60,7 +60,7 @@
     },
     {
       "event_id": 7,
-      "title": "Evento 7",
+      "title": "Filtro evento 7",
       "description": "Concierto",
       "datetime": "2024-05-07 16:00",
       "location": "Lugar del evento 7",
@@ -74,7 +74,7 @@
 
     {
         "event_id": 9,
-        "title": "Evento 9",
+        "title": "Filtro evento 9",
         "description": "Concierto",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 9",
@@ -83,7 +83,7 @@
       },
       {
         "event_id": 10,
-        "title": "Evento 10",
+        "title": "Filtro evento 10",
         "description": "Descripción del evento 10",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 10",
@@ -97,7 +97,7 @@
     "objects": [
       {
         "event_id": 11,
-        "title": "Evento 11",
+        "title": "Filtro evento 11",
         "description": "Descripción del evento 11",
         "datetime": "2024-05-01 10:00",
         "location": "Lugar del evento 11",
@@ -106,7 +106,7 @@
       },
       {
       "event_id": 12,
-      "title": "Evento 12",
+      "title": "Filtro evento 12",
       "description": "Descripción del evento 12",
       "datetime": "2024-05-02 11:00",
       "location": "Lugar del evento 12",
@@ -115,7 +115,7 @@
     },
     {
       "event_id": 13,
-      "title": "Evento 13",
+      "title": "Filtro evento 13",
       "description": "Descripción del evento 13",
       "datetime": "2024-05-03 12:00",
       "location": "Lugar del evento 13",
@@ -124,7 +124,7 @@
     },
     {
       "event_id": 14,
-      "title": "Evento 14",
+      "title": "Filtro evento 14",
       "description": "Descripción del evento 14",
       "datetime": "2024-05-04 13:00",
       "location": "Lugar del evento 14",
@@ -133,7 +133,7 @@
     },
     {
       "event_id": 15,
-      "title": "Evento 15",
+      "title": "Filtro evento 15",
       "description": "Descripción del evento 15",
       "datetime": "2024-05-05 14:00",
       "location": "Lugar del evento 15",
@@ -142,7 +142,7 @@
     },
     {
       "event_id": 16,
-      "title": "Evento 16",
+      "title": "Filtro evento 16",
       "description": "Descripción del evento 16",
       "datetime": "2024-05-06 15:00",
       "location": "Lugar del evento 16",
@@ -151,7 +151,7 @@
     },
     {
       "event_id": 17,
-      "title": "Evento 17",
+      "title": "Filtro evento 17",
       "description": "Descripción del evento 17",
       "datetime": "2024-05-07 16:00",
       "location": "Lugar del evento 17",
@@ -165,7 +165,7 @@
 
     {
         "event_id": 19,
-        "title": "Evento 19",
+        "title": "Filtro evento 19",
         "description": "Descripción del evento 19",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 19",
@@ -174,7 +174,7 @@
       },
       {
         "event_id": 20,
-        "title": "Evento 20",
+        "title": "Filtro evento 20",
         "description": "Descripción del evento 20",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 20",
@@ -187,7 +187,7 @@
     "objects": [
       {
         "event_id": 11,
-        "title": "Evento 11",
+        "title": "Filtro evento 11",
         "description": "Descripción del evento 11",
         "datetime": "2024-05-01 10:00",
         "location": "Lugar del evento 11",
@@ -196,7 +196,7 @@
       },
       {
       "event_id": 12,
-      "title": "Evento 12",
+      "title": "Filtro evento 12",
       "description": "Descripción del evento 12",
       "datetime": "2024-05-02 11:00",
       "location": "Lugar del evento 12",
@@ -205,7 +205,7 @@
     },
     {
       "event_id": 13,
-      "title": "Evento 13",
+      "title": "Filtro evento 13",
       "description": "Descripción del evento 13",
       "datetime": "2024-05-03 12:00",
       "location": "Lugar del evento 13",
@@ -214,7 +214,7 @@
     },
     {
       "event_id": 14,
-      "title": "Evento 14",
+      "title": "Filtro evento 14",
       "description": "Descripción del evento 14",
       "datetime": "2024-05-04 13:00",
       "location": "Lugar del evento 14",
@@ -223,7 +223,7 @@
     },
     {
       "event_id": 15,
-      "title": "Evento 15",
+      "title": "Filtro evento 15",
       "description": "Descripción del evento 15",
       "datetime": "2024-05-05 14:00",
       "location": "Lugar del evento 15",
@@ -232,7 +232,7 @@
     },
     {
       "event_id": 16,
-      "title": "Evento 16",
+      "title": "Filtro evento 16",
       "description": "Descripción del evento 16",
       "datetime": "2024-05-06 15:00",
       "location": "Lugar del evento 16",
@@ -241,7 +241,7 @@
     },
     {
       "event_id": 17,
-      "title": "Evento 17",
+      "title": "Filtro evento 17",
       "description": "Descripción del evento 17",
       "datetime": "2024-05-07 16:00",
       "location": "Lugar del evento 17",
@@ -255,7 +255,7 @@
 
     {
         "event_id": 19,
-        "title": "Evento 19",
+        "title": "Filtro evento 19",
         "description": "Descripción del evento 19",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 19",
@@ -264,7 +264,7 @@
       },
       {
         "event_id": 20,
-        "title": "Evento 20",
+        "title": "Filtro evento 20",
         "description": "Descripción del evento 20",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 20",
@@ -277,7 +277,7 @@
     "objects": [
       {
         "event_id": 11,
-        "title": "Evento 11",
+        "title": "Filtro evento 11",
         "description": "Descripción del evento 11",
         "datetime": "2024-05-01 10:00",
         "location": "Lugar del evento 11",
@@ -286,7 +286,7 @@
       },
       {
       "event_id": 12,
-      "title": "Evento 12",
+      "title": "Filtro evento 12",
       "description": "Descripción del evento 12",
       "datetime": "2024-05-02 11:00",
       "location": "Lugar del evento 12",
@@ -295,7 +295,7 @@
     },
     {
       "event_id": 13,
-      "title": "Evento 13",
+      "title": "Filtro evento 13",
       "description": "Descripción del evento 13",
       "datetime": "2024-05-03 12:00",
       "location": "Lugar del evento 13",
@@ -304,7 +304,7 @@
     },
     {
       "event_id": 14,
-      "title": "Evento 14",
+      "title": "Filtro evento 14",
       "description": "Descripción del evento 14",
       "datetime": "2024-05-04 13:00",
       "location": "Lugar del evento 14",
@@ -313,7 +313,7 @@
     },
     {
       "event_id": 15,
-      "title": "Evento 15",
+      "title": "Filtro evento 15",
       "description": "Descripción del evento 15",
       "datetime": "2024-05-05 14:00",
       "location": "Lugar del evento 15",
@@ -322,7 +322,7 @@
     },
     {
       "event_id": 16,
-      "title": "Evento 16",
+      "title": "Filtro evento 16",
       "description": "Descripción del evento 16",
       "datetime": "2024-05-06 15:00",
       "location": "Lugar del evento 16",
@@ -331,7 +331,7 @@
     },
     {
       "event_id": 17,
-      "title": "Evento 17",
+      "title": "Filtro evento 17",
       "description": "Descripción del evento 17",
       "datetime": "2024-05-07 16:00",
       "location": "Lugar del evento 17",
@@ -345,7 +345,7 @@
 
     {
         "event_id": 19,
-        "title": "Evento 19",
+        "title": "Filtro evento 19",
         "description": "Descripción del evento 19",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 19",
@@ -354,7 +354,7 @@
       },
       {
         "event_id": 29,
-        "title": "Evento 29",
+        "title": "Filtro evento 29",
         "description": "Descripción del evento 20",
         "datetime": "2024-05-07 16:00",
         "location": "Lugar del evento 20",

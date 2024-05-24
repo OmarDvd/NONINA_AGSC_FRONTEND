@@ -35,12 +35,16 @@ export function EventsGrid({
   peticion para cargar las categorias*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [municipio, setMunicipio] = useState('cualquiera');
+  const [municipioId, setMunicipioId] = useState(0);
+
   const [municipioOptions, setMunicipioOptions] = useState([]);
 
   const [tipo, setTipo] = useState('cualquiera');
+  const [tipoId, setTipoId] = useState(0);
+
   const [tipoOptions, setTipoOptions] = useState([]);
 
-  const [fecha, setFecha] = useState('cualquiera');
+  const [fecha, setFecha] = useState("2024-02-02");
   const [fechaOptions, setFechaOptions] = useState([]);
 
   const [permiso, setPermiso] = useState(false);
@@ -58,13 +62,24 @@ export function EventsGrid({
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
+
+    // Separar el id y el name utilizando el guion medio como delimitador
+    const [selectedId, selectedName] = value.split("-");
+  
+    // Actualizar el estado con el id y el name separados
     switch (name) {
       case 'municipio':
-
         setMunicipio(value);
+        setMunicipioId(selectedId);
+        console.log("Id del municipio: " + selectedId);
+        console.log("Nombre del municipio: " + selectedName);
         break;
+
+    
       case 'tipo':
         setTipo(value);
+        setTipoId(selectedId);
+
         break;
       case 'fecha':
         setFecha(value);
@@ -97,15 +112,20 @@ export function EventsGrid({
 
 
 useEffect(() => {
-  fetch('http://localhost:8001/0')
+  fetch('https://localhost:7070/api/Municipalities')
     .then(response => response.json())
     .then(data => {
-      console.log(data.municipios[0].municipio);
+      console.log("trtrtrtttttttt");
 
-      const options = data.municipios.map(municipio => (
-        <option key={municipio.municipio} value={municipio.municipio}>{municipio.municipio}</option>
+      console.log(data[0].id);
+
+      const options = data.map(municipio => (
+        // <option key={municipio.id} value={municipio.name} >{municipio.name}</option>
+<option key={municipio.id} value={`${municipio.id}-${municipio.name}`}>
+          {municipio.name}
+        </option>
       ));
-      options.unshift(<option key="cualquiera" value="cualquiera">Todos</option>);
+      options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Todos</option>);
       setMunicipioOptions(options);
     })
     .catch(error => console.error('Error fetching municipio :', error));
@@ -113,15 +133,18 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch('http://localhost:8002/0')
+  fetch('https://localhost:7070/api/Categories')
     .then(response => response.json())
     .then(data => {
-      console.log(data.tipos[0].tipo);
+      console.log(data[0]);
 
-      const options = data.tipos.map(tipo => (
-        <option key={tipo.tipo} value={tipo.tipo}>{tipo.tipo}</option>
+      const options = data.map(tipo => (
+        // <option key={tipo.id} value={tipo.name} >{tipo.name}</option>
+<option key={tipo.id} value={`${tipo.id}-${tipo.name}`}>
+        {tipo.name}
+      </option>
       ));
-      options.unshift(<option key="cualquiera" value="cualquiera">Todos</option>);
+      options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Todos</option>);
       setTipoOptions(options);
     })
     .catch(error => console.error('Error fetching tipo :', error));
@@ -235,22 +258,23 @@ useEffect(() => {
 
 
 
-      if((municipio !== 'cualquiera')&&(tipo !== 'cualquiera')){
-        url=`http://localhost:8006/${page}?`;
+      // if((municipio !== 'cualquiera')&&(tipo !== 'cualquiera')){
+        console.log(municipioId);
+        url=`https://localhost:7070/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&limit=${limit}&offset=${offset}`;
 
-      }else if((municipio !== 'cualquiera')||(tipo !== 'cualquiera')){
-        if (municipio !== 'cualquiera') {
-          url=`http://localhost:8004/${page}?`;
+      // }else if((municipio !== 'cualquiera')||(tipo !== 'cualquiera')){
+      //   if (municipio !== 'cualquiera') {
+      //     url=`http://localhost:8004/${page}?`;
   
-        }
+      //   }
         
-        if (tipo !== 'cualquiera') {
-          url=`http://localhost:8005/${page}?`;
-        }
-      }else{
-        url=`http://localhost:8000/${page}?`;
+      //   if (tipo !== 'cualquiera') {
+      //     url=`http://localhost:8005/${page}?`;
+      //   }
+      // }else{
+      //   url=`http://localhost:8000/${page}?`;
 
-      }
+      // }
 
 
        
@@ -261,8 +285,8 @@ useEffect(() => {
        if(data.length===0){
          setHasMore(false);
        }
-       console.log(data.objects);
-       data.objects.forEach(item => {
+       console.log(data);
+       data.forEach(item => {
         setItems(prevItems => [...prevItems, item]);
       });
                setPage(prevPage => prevPage + 1);
