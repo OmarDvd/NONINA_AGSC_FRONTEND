@@ -12,31 +12,6 @@ export default function Rincones({rincones, setRincones}) {
     <div     id="target"
  className="" style={{backgroundColor:"#333", zIndex:2,position:"absolute", top:0}}>
 
-<Link
-    to="/events" 
-    className="linkHoverEffect"
-    style={{
-      position: 'absolute',
-      top: '30px',
-      right: '30px',
-      zIndex: '2333',
-      border:'2px solid black',
-      backgroundColor: 'white',
-      cursor: 'pointer',
-      textDecoration: 'none', 
-      color: 'rgba(0, 71, 171, 1)',
-      padding: '3px',
-      boxShadow: '5px 5px 5px rgba(0, 0, 0, 1)',
-      transition: 'transform 0.3s ease'
-
-      
-    }}
-    onClick={handleClick}
-  >
-    <div className="d-flex flex-column">
-      <small style={{ fontSize: "1.5em" }}>Ver eventos</small>
-    </div>
-  </Link>
  <Plx
         parallaxData={[
           {
@@ -144,40 +119,6 @@ export default function Rincones({rincones, setRincones}) {
 
     
 
-<Plx
-  parallaxData={[
-    {
-      start: 900, 
-      end: 2000, 
-      properties: [
-        {
-          startValue: 1,
-          endValue: 1, 
-          property: "scale"
-        },
-        
-            ]
-    }
-  ]}
-  style={{
-    position: "relative", 
-    left:"5%",
-    width: "85%",
-    top:"150vh",
-    zIndex: 101 
-  }}
->
-  <div style={{
-    display: "flex",
-    justifyContent:"space-between"}}>
-      <div style={{
-    width: "35%"}}>
-      <img style={{ width: "100%" }} src="https://assets.buendiatours.com/s3fs-public/styles/gallery_mobile_800_580_/public/2023-10/visita-guiada-albaicin-sacromonte_espectaculo-flamenco_granada_cuevas_excursion_andalucia_buendia%20%284%29.jpg.webp?VersionId=NtVvR6N02iYkO785ogx6DpaHnW4Yh7Jn&itok=VMwFhhbo" alt="background" />
-
-      </div>
-<p className="granaRegular" >Piérdete por el barrio del Realejo</p>
-  </div>
-</Plx>
 
 
 
@@ -245,7 +186,7 @@ export default function Rincones({rincones, setRincones}) {
     position: "relative", 
     left:"5%",
     width: "85%",
-    top:"230vh",
+    top:"270vh",
     zIndex: 101 
   }}
 >
@@ -393,7 +334,7 @@ export default function Rincones({rincones, setRincones}) {
     background: "rgba(0, 71, 171, 1)",
     textDecoration:"none",
     padding:"10px"}}
-    className="granaBoton"> Subir arriba</a>
+    className="granaBoton"> Volver al mirador</a>
 </p>
 
   </div></Plx>

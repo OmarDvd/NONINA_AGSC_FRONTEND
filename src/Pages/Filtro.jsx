@@ -82,8 +82,8 @@ export function Filtro({
     
       return (
         <div >
-        <NavigationBar toggleState={toggleState} logeado={logeado} />
-        {mounted && <div className="container-fluid"  style={{backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')"}} >
+        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
+        <div className="container-fluid"  style={{backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')"}} >
     
         <div className="container">
           <p className='grana'>Coincidencias encontradas para: </p>
@@ -104,11 +104,11 @@ export function Filtro({
       <h1 className="grana">Tapas</h1>
     </div>
         </div>    
-    </div>}  
+    </div>
     
     
     
-    <Footer/>   
+    {/* <Footer/>    */}
     
     
     </div>

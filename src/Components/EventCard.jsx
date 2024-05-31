@@ -12,44 +12,7 @@ import { FaShareAlt } from 'react-icons/fa';
 import {MapCoordinates} from "./MapCoordinates"
 
 
-export  const MeGustaButton = () => {
-  const [meGusta, setMeGusta] = useState(false);
 
-  const handleMeGustaClick = () => {
-    /*Aqui deberiamos evaluar que funcion ejecutar con endpoint para
-    guardar en base de datos nuestros fvoritos o borrar
-    */
-    setMeGusta(!meGusta);
-  };
-
-
-
-  return (
-    <button onClick={handleMeGustaClick} style={{ backgroundColor: 'transparent', border: 'none',cursor:'' }}>
-      <FaHeart color={meGusta ? 'rgba(0,71,171,1)' : '#00857d'} style={{ transition: 'color 0.3s' }} size={24} />
-    </button>
-  );
-};
-
-
-export  const QuieroConocerGente = () => {
-  const [conocer, setConocer] = useState(false);
-
-  const handleConocerClick = () => {
-    /*Aqui deberiamos evaluar que funcion ejecutar con endpoint para
-    guardar en base de datos nuestros fvoritos o borrar
-    */
-    setConocer(!conocer);
-  };
-
-  
-
-  return (
-    <button onClick={handleConocerClick} style={{ backgroundColor: 'transparent', border: 'none',cursor:'' }}>
-      <FaUsers    color={conocer ? 'rgba(0,71,171,1)' : '#00857d'} style={{ transition: 'color 0.3s' }} size={24} />
-    </button>
-  );
-};
 
 
 export const CompartirEventoButton = ({ evento }) => {
@@ -75,6 +38,18 @@ export const CompartirEventoButton = ({ evento }) => {
   </button>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
 export function EventCard({
   activity,
   toggleState,
@@ -86,58 +61,29 @@ export function EventCard({
 
 
 
+
   
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  return(
-    // <Link to={"/detalle/" + "a"}>
-  <Card className="cardStyles" style={{ margin:40,marginTop:40,width: '13vw', height: 'auto',display:"inline-block",zIndex:0}}
- 
-
-  >
-
-<Link to={"/detalle/" + activity.id}>
-  {/* <Card.Img  className="imageCard" variant="top" src="/fondo.webp" /> */}
-  <Card.Img  className="imageCard" variant="top" src={activity.imageEvento} />
-
-  {/* <Card.Img variant="top" src={`${activity.image}`} /> */}
+  return(<Card className="cardStyles">
+  <Link to={"/detalle/" + activity.id}>
+    <Card.Img className="imageCard" variant="top" src={activity.imageEvento} />
   </Link>
-  <Link to={"/detalle/" + activity.id} style={{textDecoration:'none'}}>
-
-  <Card.Body>
-    <Card.Title style={{color:"#00857d",fontSize:"1.8em"}}>{activity.title}</Card.Title>
-    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}} >
-    {activity.description}
-    </Card.Text>
-    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.date}
-    </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.placeLabel}
-    </Card.Text>    <Card.Text  style={{color:"rgba(0,71,171,1)",fontSize:"1.4em"}}>
-    {activity.municipalityName}
-    </Card.Text>
-    
-        </Card.Body>
-        </Link> 
-        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton/>}
-        <CompartirEventoButton evento={activity} />
-        {logeado && <QuieroConocerGente/>}</div>
-
-
+  <Link to={"/detalle/" + activity.id} style={{ textDecoration: 'none' }}>
+    <Card.Body className="cardBody">
+      <Card.Title className="cardTitle">{activity.title}</Card.Title>
+      <Card.Text className="cardText">{activity.description}</Card.Text>
+      <Card.Text className="cardText">{activity.date}</Card.Text>
+      <Card.Text className="cardText">{activity.placeLabel}</Card.Text>
+      <Card.Text className="cardText">{activity.municipalityName}</Card.Text>
+    </Card.Body>
+  </Link>
+  <div className="cardFooter">
+    {/* {logeado && <MeGustaButton evento={activity} meGusta={meGusta} setMeGusta={setMeGusta}/>} */}
+    <CompartirEventoButton evento={activity} />
+    {/* {logeado && <QuieroConocerGente />} */}
+  </div>
 </Card>
-
-)
+);
 }

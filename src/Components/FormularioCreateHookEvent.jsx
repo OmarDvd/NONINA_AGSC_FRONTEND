@@ -28,19 +28,33 @@ export function FormularioCreateHookEvent(){
         //   ...data,
         //  // Asignar el próximo ID también al objeto cliente
         // };
-        const token = sessionStorage.getItem('token');
 
-        await fetch('http://localhost:8000/api/newuser', {
+        const formData = new FormData();
+    
+        // Agregar los datos del formulario al FormData
+        for (const key in data) {
+          formData.append(key, data[key]);
+        }
+        
+        // Agregar la imagen al FormData
+        if (imagenSeleccionada) {
+          formData.append("ImageFile", imagenSeleccionada);
+        }
+    
+        const response = await fetch('https://localhost:7070/api/Evento?Id=1&Title=' + encodeURIComponent(data.Title) + '&Description=' + encodeURIComponent(data.Description) + '&PlaceLabel=' + encodeURIComponent(data.PlaceLabel) + '&PlaceCoordinates=' + encodeURIComponent(data.PlaceCoordinates) + '&year=' + data.Date.slice(0, 4) + '&month=' + data.Date.slice(5, 7) + '&day=' + data.Date.slice(8, 10) + '&dayOfWeek=0&hour=' + data.Time.slice(0, 2) + '&minute=' + data.Time.slice(3, 5) + '&MunicipalityId=1&CategoryId=2&UserId=1&ImageEvento=dfdf', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(data),
+ 
+          body: formData, 
         });
+    
+        if (!response.ok) {
+          throw new Error('Error al crear la lista');
+        }
+    
+        const responseData = await response.json();
         alert("Cliente creado");
         formularioRef.current.reset();
-
+    
       } catch (error) {
         console.error("Error al crear la lista:", error);
       }

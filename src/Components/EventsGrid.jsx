@@ -6,7 +6,8 @@ import { useLocation } from "react-router-dom";
 import { useDebounce } from "../hooks/useDebounce";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {Search} from "../Components/Search"
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import "../styles.css";
 
 // import {Footer} from '../Components/Footer'; 
@@ -29,6 +30,7 @@ export function EventsGrid({
   const [page, setPage] = useState(0);
   const [pageControl, setPageControl] = useState(1);
   const [hasMore, setHasMore] = useState(true); 
+  const [selectedDate, setSelectedDate] = useState(null);
 
   /*Variables para pasarle a mi api
   funcion asignada para cambiar su valor cuando se cambie,
@@ -71,8 +73,8 @@ export function EventsGrid({
       case 'municipio':
         setMunicipio(value);
         setMunicipioId(selectedId);
-        console.log("Id del municipio: " + selectedId);
-        console.log("Nombre del municipio: " + selectedName);
+        // console.log("Id del municipio: " + selectedId);
+        // console.log("Nombre del municipio: " + selectedName);
         break;
 
     
@@ -81,9 +83,7 @@ export function EventsGrid({
         setTipoId(selectedId);
 
         break;
-      case 'fecha':
-        setFecha(value);
-        break;
+
       case 'cine':
 
         setCine(value);
@@ -91,6 +91,16 @@ export function EventsGrid({
       default:
         break;
     }
+    setPage(0);
+    setItems([]);
+    setHasMore(true);
+    setPermiso(true);
+  };
+
+  const handleDateChange = (date) => {
+    // Asegúrate de ajustar la fecha a la zona horaria local si es necesario
+    const localDate = date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : null;
+    setSelectedDate(localDate);
     setPage(0);
     setItems([]);
     setHasMore(true);
@@ -115,9 +125,7 @@ useEffect(() => {
   fetch('https://localhost:7070/api/Municipalities')
     .then(response => response.json())
     .then(data => {
-      console.log("trtrtrtttttttt");
 
-      console.log(data[0].id);
 
       const options = data.map(municipio => (
         // <option key={municipio.id} value={municipio.name} >{municipio.name}</option>
@@ -125,7 +133,7 @@ useEffect(() => {
           {municipio.name}
         </option>
       ));
-      options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Todos</option>);
+      // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Toddos</option>);
       setMunicipioOptions(options);
     })
     .catch(error => console.error('Error fetching municipio :', error));
@@ -136,7 +144,6 @@ useEffect(() => {
   fetch('https://localhost:7070/api/Categories')
     .then(response => response.json())
     .then(data => {
-      console.log(data[0]);
 
       const options = data.map(tipo => (
         // <option key={tipo.id} value={tipo.name} >{tipo.name}</option>
@@ -144,7 +151,7 @@ useEffect(() => {
         {tipo.name}
       </option>
       ));
-      options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Todos</option>);
+      // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Tosdos</option>);
       setTipoOptions(options);
     })
     .catch(error => console.error('Error fetching tipo :', error));
@@ -219,7 +226,7 @@ useEffect(() => {
 
     effectRanDos.current=true;
   }
-},[cine,municipio,tipo]);
+},[cine,municipio,tipo,selectedDate]);
 
 
 
@@ -237,16 +244,12 @@ useEffect(() => {
     const limit = 6; 
     const offset = page * limit; 
     let url="";
-    console.log(query+"frdfd");
     if((query!==null)&&(query!=='')){
-      console.log(page);
       setItems([]);
       setItemsDebounce([]);
        url =`http://localhost:8006/${page}`;
-       console.log("imprime query "+query);
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       data.objects.forEach(item => {
         setItems(prevItems => [...prevItems, item]);
       });
@@ -257,10 +260,17 @@ useEffect(() => {
     }else{
 
 
-
       // if((municipio !== 'cualquiera')&&(tipo !== 'cualquiera')){
-        console.log(municipioId);
-        url=`https://localhost:7070/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&limit=${limit}&offset=${offset}`;
+
+
+      if(selectedDate !=null){
+        url=`https://localhost:7070/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate.toISOString().split('T')[0]}&limit=${limit}&offset=${offset}`;
+
+      }else{
+        url=`https://localhost:7070/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate}&limit=${limit}&offset=${offset}`;
+
+      }
+        console.log(url);
 
       // }else if((municipio !== 'cualquiera')||(tipo !== 'cualquiera')){
       //   if (municipio !== 'cualquiera') {
@@ -278,7 +288,6 @@ useEffect(() => {
 
 
        
-      console.log(url);
        const response = await fetch(url);
        const data = await response.json();
  
@@ -333,22 +342,57 @@ useEffect(() => {
 
 
 
- return (       
-   <div className="row ">
+  return (
+    <div className="row">
+      <div className="col-lg-3 col-6">
+        <p className="mt-3 ms-4 d-block text-start">
+          <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Municipio</span>
+        </p>
+        <p className="d-block text-start">
+          <select className="select-placeholder" name="municipio" value={municipio} onChange={handleSelectChange} style={{ width: '100%' }}>
+     <option key="cualquiera" value={["0-cualquiera"]}>Todos</option>;
 
-    <div className="col-lg-3 col-4"><p className="mt-3 ms-4  mb-4 d-block text-start"><span className="me-4" style={{fontSize:"1.8em",color:"rgba(0,71,171,1"}}>Municipio</span><select name="municipio" value={municipio} onChange={handleSelectChange}>
-    {municipioOptions}
-</select></p></div>
-<div className="col-lg-3  col-4"><p className="mt-3 ms-3 mb-4  d-block"><span className="me-4"  style={{fontSize:"1.8em",color:"rgba(0,71,171,1"}}>Evento</span><select name="tipo" value={tipo} onChange={handleSelectChange}>
-    {tipoOptions}
-</select></p></div>
+            {municipioOptions}
+          </select>
+        </p>
+      </div>
+      <div className="col-lg-3 col-6">
+        <p className="mt-3 ms-4 d-block text-start">
+          <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Evento</span>
+        </p>
+        <p className="d-block text-start">
+          <select className="select-placeholder" name="tipo" value={tipo} onChange={handleSelectChange} style={{ width: '100%' }}>
+          <option key="cualquiera" value={["0-cualquiera"]}>Todos</option>;
 
-<div className="col-lg-3  col-4"><p className="mt-3 ms-3 mb-4  d-block"><span className="me-4"  style={{fontSize:"1.8em",color:"rgba(0,71,171,1"}}>Fecha</span><select name="genero" value={fecha} onChange={handleSelectChange}>
-    {fechaOptions}
-</select></p></div>
-<div className="col-lg-3 col-12">
-<Search />
-</div>
+            {tipoOptions}
+          </select>
+        </p>
+      </div>
+      <div className="col-lg-3 col-6">
+        <p className="mt-3 ms-4 d-block text-start">
+          <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Fecha</span>
+        </p>
+        <p className="d-block text-start custom-datepicker">
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Selecciona una fecha"
+            isClearable
+            className="form-control "
+            
+          />
+        </p>
+      </div>
+      <div className="col-lg-3 col-6">
+        <p className="mt-3 ms-4 d-block text-start">
+          {/* <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Buscar</span> */}&nbsp;
+        </p>
+        <p className="d-block text-start">
+          <Search />
+        </p>
+      </div>
+
 
    
 <InfiniteScroll

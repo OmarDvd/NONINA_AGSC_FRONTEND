@@ -8,42 +8,80 @@ export function FormularioLoginHook({toggleState}){
     const {register,handleSubmit,formState: { errors }}=useForm();
 
     
+    // const loginFuncion =  (data) => {
+
+
+    //      fetch('https://fakestoreapi.com/auth/login',{
+    //       method:'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         username:"mor_2314",
+    //         password:"83r5^_"
+    //       })
+    //   })
+    //   .then(res => {
+    //     console.log('Response:', res);
+    //     return res.json();
+    // })        .then(data => {
+    //       if (data.token) {
+    //         console.log(data);
+    //         toggleState(true);
+
+
+    //         formularioRef.current.reset();
+    //         // alert("Inicio de sesión exitoso");
+    //       } else {
+    //         alert("Usuario o contraseña incorrectos");
+    //       }
+    //     })
+        
+        
+        
+
+    //   .catch(error=> {
+    //     console.error("Error al crear la lista:", error);
+    //   }
+    // );}
+
+
+    
     const loginFuncion =  (data) => {
 
+      var usernameReceived=data.username;
 
-         fetch('https://fakestoreapi.com/auth/login',{
-          method:'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username:"mor_2314",
-            password:"83r5^_"
-          })
+      fetch('https://localhost:7070/api/Autentication/validar',{
+       method:'POST',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         username:data.username,
+         clave:data.password
+       })
+   })
+   .then(res => {
+     console.log('Response:', res);
+     return res.json();
+ })        .then(data => {
+       if (data.token) {
+         console.log(data);
+         toggleState(true);
+         localStorage.setItem('authToken', data.token); // Guarda el token en el local storage
+         localStorage.setItem('username', usernameReceived); // Guarda el token en el local storage
+
+
+         formularioRef.current.reset();
+        } else {
+          alert("Usuario o contraseña incorrectos");
+        }
       })
-      .then(res => {
-        console.log('Response:', res);
-        return res.json();
-    })        .then(data => {
-          if (data.token) {
-            console.log(data);
-            toggleState(true);
+      .catch(error => {
+        console.error("Error al iniciar sesión:", error);
+      });
+  };
 
-
-            formularioRef.current.reset();
-            // alert("Inicio de sesión exitoso");
-          } else {
-            alert("Usuario o contraseña incorrectos");
-          }
-        })
-        
-        
-        
-
-      .catch(error=> {
-        console.error("Error al crear la lista:", error);
-      }
-    );}
     return (
         <div>
 <form ref={formularioRef} onSubmit={handleSubmit(loginFuncion)} method="post" style={{

@@ -12,7 +12,6 @@ import { FormularioLoginHook } from "../Components/FormularioLoginHook";
 export default function Login({toggleState,cambiarRegistro,logeado}) {
 
   
-  const [mounted, setMounted] = useState(false);
   const [registro, setRegistro] = useState(false);
 
   const handleRegistroClick = () => {
@@ -22,12 +21,6 @@ export default function Login({toggleState,cambiarRegistro,logeado}) {
     setRegistro(true);
   };
 
-  useEffect(() => {
-      setMounted(true);
-      return () => {
-          setMounted(false);
-      };
-  }, []);
 
 
 if(logeado){
@@ -42,8 +35,8 @@ if(logeado){
 
   return (
     <>
-        <NavigationBar toggleState={toggleState} logeado={logeado} />
-        {mounted && <div  style={{color: "white", backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')", minHeight:"100vh"}}>
+        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
+      <div  style={{color: "white", backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')", minHeight:"100vh"}}>
   
  <div className='container' >
 <div className="row">
@@ -65,10 +58,10 @@ if(logeado){
 </div>
     </div>    
     </div>
-    </div>}
+    </div>
     
     
-    <Footer/>    
+    {/* <Footer/>     */}
 
 
 </>

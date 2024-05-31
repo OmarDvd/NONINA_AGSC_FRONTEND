@@ -23,14 +23,14 @@ export default function Events({
     return(
         // <div className="container-fluid" style={{backgroundImage:"url('fondototal.jpg')", backgroundSize: ' auto 20%', backgroundRepeat: 'repeat'}} >
         <>
-        <NavigationBar toggleState={toggleState} logeado={logeado} />
+        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
         <div className="container-fluid"  style={{backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')"}} >
 
         <div className="container">
-        {mounted && <EventsGrid toggleState={toggleState} logeado={logeado} />}    </div>
+         <EventsGrid toggleState={toggleState} logeado={logeado} />   </div>
 
   </div>
-  <Footer/>
+  {/* <Footer/> */}
 </>
 
 );

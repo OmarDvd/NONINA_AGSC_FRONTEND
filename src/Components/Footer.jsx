@@ -1,14 +1,18 @@
-
-
+import { NavLink,useLocation} from "react-router-dom";
 
 
 
 export function Footer(){
 
+    const location = useLocation();
+
+    // Comprueba si la ubicación actual corresponde a la página de Rincones
+    const isRinconesPage = location.pathname === "/rincones";
+    
 
 
     return(
-        <footer className=" p-3" style={{backgroundColor:"rgba(0,71,171,1"}}>
+        <footer className=" p-3" style={{backgroundColor:"rgba(0,71,171,1",display: isRinconesPage ? "none" : "block" }}>
             <div className="container text-center">
 
 

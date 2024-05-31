@@ -9,6 +9,7 @@ import {
   Switch,
   Route,
   Link,
+  useLocation
 } from "react-router-dom";
 import NavigationBar from "./Components/NavigationBar";
 
@@ -18,14 +19,23 @@ import NavigationBar from "./Components/NavigationBar";
 import Events from "./Pages/Events";
 import {Filtro} from "./Pages/Filtro";
 import {PostPage} from "./Pages/PostPage";
+import {Footer} from "./Components/Footer";
 
 import Login from "./Pages/Login";
 import {CreateEvent} from "./Pages/CreateEvent";
 
 
-import {DetalleProducto} from "./Pages/DetalleProducto";
+import DetalleProductoPage from "./Pages/DetalleProductoPage";
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 export default function App() {
   const Rincones = React.lazy(() => import('./Pages/Rincones'));
@@ -48,25 +58,30 @@ export default function App() {
         }
         return (
           <>
+
           <Router>
-            
+          <NavigationBar toggleState={toggleState} logeado={logeado} />
+          <ScrollToTop /> 
             <Suspense fallback={<div>Loading...</div>}>
               
               <Routes>
                 
-                <Route path="/" element={<Rincones rincones={rincones} setRincones={setRincones} />} />
+              <Route path="/" element={<Events toggleState={toggleState} logeado={logeado}/>} />
                 
                 <Route path="/events" element={<Events toggleState={toggleState} logeado={logeado}/>} />
                 <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} />} />
                 <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
                 <Route path="/postpage" element={<PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
                 <Route path="/createevent" element={<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
-                <Route path="/detalle/:eventID" element={<DetalleProducto logeado={logeado} toggleState={toggleState}/>}></Route>
+                <Route path="/detalle/:eventID" element={<DetalleProductoPage logeado={logeado} toggleState={toggleState}/>}></Route>
                 <Route path="/filtrar" element={<Filtro logeado={logeado} toggleState={toggleState}/>}></Route>
 
               </Routes>
             </Suspense>
+            <Footer />
+
           </Router>
+
           </>
         );
 

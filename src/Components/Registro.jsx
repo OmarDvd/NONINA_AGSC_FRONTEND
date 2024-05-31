@@ -24,8 +24,8 @@ export  function Registro({registro,setRegistro,toggleState,cambiarRegistro,loge
   }, []);
   return (
     <>
-        <NavigationBar toggleState={toggleState} logeado={logeado} />
-        {mounted && <div  style={{color: "white", backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')",minHeight:"100vh"}}>
+        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
+       <div  style={{color: "white", backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')",minHeight:"100vh"}}>
   
  <div className='container'>
 <div className="row">
@@ -47,10 +47,10 @@ export  function Registro({registro,setRegistro,toggleState,cambiarRegistro,loge
 </div>
     </div>   
     </div>
-    </div>}
+    </div>
     
     
-    <Footer/>    
+    {/* <Footer/>     */}
 
 
 </>

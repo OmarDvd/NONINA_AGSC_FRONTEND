@@ -6,7 +6,7 @@ export function MiPerfil(
 
     return (
         <>
-        <NavigationBar toggleState={toggleState} logeado={logeado} />
+        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
         <div  style={{ backgroundImage: "url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')",minHeight:"100vh" }}>
         <div class="container">
         
@@ -42,7 +42,7 @@ export function MiPerfil(
         </div>
         
         
-        <Footer />
+        {/* <Footer /> */}
         
         </>
 
