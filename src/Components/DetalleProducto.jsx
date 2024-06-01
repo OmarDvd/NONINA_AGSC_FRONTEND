@@ -31,6 +31,7 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta}) => {
         console.error('Token no encontrado. No se puede verificar la agenda.');
         return;
     }
+    console.log("Esto es un console log de add agenda");
 
     console.log(username);
     console.log(evento);
@@ -119,10 +120,10 @@ const handleMeGustaClick = async  () => {
 
   if (meGusta) {
     // Llamada al backend para eliminar el registro
-    await deleteAgenda(username,evento);
+    await deleteAgenda(usernameCaptured,evento);
 } else {
     // Llamada al backend para crear el registro
-    await addAgenda(username,evento);
+    await addAgenda(usernameCaptured,evento);
 }
 
 // Actualizar el estado

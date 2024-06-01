@@ -69,6 +69,13 @@ export function FormularioLoginHook({toggleState}){
          console.log(data);
          toggleState(true);
          localStorage.setItem('authToken', data.token); // Guarda el token en el local storage
+         localStorage.setItem('name', data.name); // Guarda el token en el local storage
+         localStorage.setItem('email', data.email); // Guarda el token en el local storage
+         localStorage.setItem('owner', data.owner); // Guarda el token en el local storage
+         localStorage.setItem('admin', data.admin); // Guarda el token en el local storage
+         localStorage.setItem('authToken', data.token); // Guarda el token en el local storage
+         localStorage.setItem('id', data.id); // Guarda el token en el local storage
+
          localStorage.setItem('username', usernameReceived); // Guarda el token en el local storage
 
 
