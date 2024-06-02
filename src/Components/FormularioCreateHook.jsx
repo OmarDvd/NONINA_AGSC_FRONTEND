@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { TextField, Button, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { TextField, Button, RadioGroup, FormControlLabel, FormGroup,FormControl, FormLabel,Switch} from '@mui/material';
 import { useRef } from "react";
 
 
@@ -12,25 +12,38 @@ export function FormularioCreateHook(){
     const createList = async (data) => {
       try {
 
-        // const nuevoIdCliente =   await incrementaId(); 
-  
+console.log("eee el rol");
+console.log( data.role);
+        const body = {
+          name: data.nombre,
+          surname: data.apellidos,
+          age: data.edad,
+          email: data.email,
+          username: data.username,
+          password: data.password,
+          salt:"",
+          owner: data.role,
+          admin: false,
 
-        // const clienteData = {
-        //   ...data,
-        //  // Asignar el próximo ID también al objeto cliente
-        // };
-        const token = sessionStorage.getItem('token');
+        };
 
-        await fetch('http://localhost:8000/api/newuser', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(data),
-        });
-        alert("Cliente creado");
-        formularioRef.current.reset();
+        const response = await fetch('https://localhost:7070/api/Users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      body: JSON.stringify(body),
+    });
+        if (response.status === 409) {
+          const errorData = await response.json();
+          alert(errorData.message); // El usuario ya existe
+        } else if (response.ok) {
+          alert("Usuario creado");
+          formularioRef.current.reset();
+        } else {
+          throw new Error("Error desconocido");
+        }
 
       } catch (error) {
         console.error("Error al crear la lista:", error);
@@ -129,6 +142,13 @@ export function FormularioCreateHook(){
 
 />
 
+<div style={{ marginTop: '16px', marginBottom: '16px' }}>
+          <FormLabel component="legend" style={{ color: '#333', marginBottom: '8px' }}>Organizador de eventos</FormLabel>
+          <FormControlLabel
+            control={<Switch {...register("role")} color="primary" />}
+            label=""
+          />
+        </div>
 <Button type="submit" className="mt-3" variant="contained" style={{ backgroundColor: 'rgba(0,71,171,1)', color: 'white' }}>
   Registrarse
 </Button>
