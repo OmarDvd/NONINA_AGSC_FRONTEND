@@ -74,7 +74,7 @@ export function EventCard({
     <Card.Body className="cardBody">
       <Card.Title className="cardTitle">{activity.title}</Card.Title>
       <Card.Text className="cardText">{activity.description}</Card.Text>
-      <Card.Text className="cardText">{activity.date}</Card.Text>
+      <Card.Text className="cardText">{activity.date.slice(8, 10)}-{activity.date.slice(5, 7) }-{activity.date.slice(0, 4) }</Card.Text>
       <Card.Text className="cardText">{activity.placeLabel}</Card.Text>
       <Card.Text className="cardText">{activity.municipalityName}</Card.Text>
     </Card.Body>
