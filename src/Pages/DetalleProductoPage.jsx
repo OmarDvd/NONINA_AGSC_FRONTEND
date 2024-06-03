@@ -25,7 +25,7 @@ export default function DetalleProductoPage({
                 toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
             }
         }
-    }, []);
+    }, [logeado]);
 
     return(
         // <div className="container-fluid" style={{backgroundImage:"url('fondototal.jpg')", backgroundSize: ' auto 20%', backgroundRepeat: 'repeat'}} >

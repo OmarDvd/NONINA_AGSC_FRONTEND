@@ -158,7 +158,7 @@ export function MiPerfil({ toggleState, logeado }) {
                                     </div>
                                     <div class="px-4 py-3">
                                         <h5 class="mb-5">Mis eventos - {localStorage.getItem("name")}</h5>
-                                        <Table bordered hover>
+                                        <Table bordered hover className="table-centered"  >
                                             <thead>
                                                 <tr>
                                                     <th style={{ width: "8vw" }}>Ver más detalles</th>
@@ -208,7 +208,7 @@ export function MiPerfil({ toggleState, logeado }) {
                                 </div>
                                 <div class="px-4 py-3">
                                     <h5 class="mb-5">Mis eventos - {localStorage.getItem("name")}</h5>
-                                    <Table bordered hover>
+                                    <Table bordered hover className="table-centered"  >
                                         <thead>
                                             <tr>
                                                 <th style={{ width: "8vw" }}>Ver más detalles</th>
@@ -222,9 +222,14 @@ export function MiPerfil({ toggleState, logeado }) {
                                             {items.map((item) => (
                                                 <tr key={item.id}>
                                                     <td style={{ maxWidth: "8vw" }}>
-                                                        <Link to={"/detalle/" + item.eventoId} style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                                                            <img src={item.imageEvento} alt="Evento" style={{ maxWidth: "75px", objectFit: "cover", paddingRight: "5px" }} />
+                                                    {owner === "true" ?
+                                                        <Link to={"#" + item.eventoId} style={{ textDecoration: "none", cursor: "default", color: "black" }}>
+                                                            <img src={item.imageEvento} alt="Evento" style={{ width:"100%",height:"80px", objectFit: "cover", paddingRight: "5px" }} />
                                                         </Link>
+                                                        :
+                                                        <Link to={"/detalle/" + item.eventoId} style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                                                            <img src={item.imageEvento} alt="Evento" style={{ width:"100%",height:"80px", objectFit: "cover", paddingRight: "5px" }} />
+                                                        </Link>}
                                                     </td>
                                                     <td style={{ maxWidth: "8vw" }}>
                                                         {item.title}

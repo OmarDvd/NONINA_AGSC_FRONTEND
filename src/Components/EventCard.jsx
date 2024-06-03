@@ -14,11 +14,11 @@ import {MapCoordinates} from "./MapCoordinates"
 
 
 
-
 export const CompartirEventoButton = ({ evento }) => {
   const handleCompartirClick = () => {
-    const url = window.location.href; // Obtener la URL actual de la página
+    const url = window.location.href;
     const texto = `¡No te pierdas este evento! ${evento.title} el ${evento.date} en ${evento.description}. Más detalles: ${url}`;
+
     if (navigator.share) {
       navigator.share({
         title: 'Compartir evento',
@@ -28,17 +28,19 @@ export const CompartirEventoButton = ({ evento }) => {
       .then(() => console.log('Evento compartido'))
       .catch((error) => console.error('Error al compartir el evento', error));
     } else {
-      alert('Tu navegador no soporta la función de compartir.');
+      const opciones = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600';
+      const compartirUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(texto)}`;
+
+      window.open(compartirUrl, '_blank', opciones);
     }
   };
 
   return (
-    <button onClick={handleCompartirClick} aria-label="Compartir" style={{border:"0px",marginBottom:"8px",backgroundColor:"transparent"}}>
-    <FaShareAlt  style={{color:'#00857d',backgroundColor:"transparent"} }  size={24}/>
-  </button>
+    <button onClick={handleCompartirClick} aria-label="Compartir" style={{ border: "0px", marginBottom: "8px", backgroundColor: "transparent" }}>
+      <FaShareAlt style={{ color: '#00857d', backgroundColor: "transparent" }} size={24} />
+    </button>
   );
 };
-
 
 
 

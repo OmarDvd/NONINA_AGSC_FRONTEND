@@ -126,15 +126,25 @@ export function FormularioCreateHookEvent(){
 
         const formData = new FormData();
     
-        // Agregar los datos del formulario al FormData
-        // for (const key in data) {
-        //   formData.append(key, data[key]);
-        // }
-        
         // Agregar la imagen al FormData
-        if (imagenSeleccionada) {
-          formData.append("ImageFile", imagenSeleccionada);
-        }
+    if (imagenSeleccionada) {
+      formData.append("ImageFile", imagenSeleccionada);
+      console.error(imagenSeleccionada);
+
+    } else {
+      console.error("No image selected");
+      return;
+    }
+
+    // Log formData entries for debugging
+    for (let pair of formData.entries()) {
+      console.error(" image yeah ");
+
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+
+    
     console.log("Esto es loq ue enviamos para guardar:")
     console.log(formData);
     const url='https://localhost:7070/api/Evento?Id=1&Title=' + encodeURIComponent(data.titulo) 
@@ -158,7 +168,6 @@ export function FormularioCreateHookEvent(){
 
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data' 
             },
             mode: 'cors',
 

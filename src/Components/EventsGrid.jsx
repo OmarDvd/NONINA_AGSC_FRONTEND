@@ -344,33 +344,33 @@ useEffect(() => {
 
   return (
     <div className="row">
-      <div className="col-lg-3 col-6">
+      <div className="col-lg-4 col-6">
         <p className="mt-3 ms-4 d-block text-start">
           <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Municipio</span>
         </p>
         <p className="d-block text-start">
-          <select className="select-placeholder" name="municipio" value={municipio} onChange={handleSelectChange} style={{ width: '100%' }}>
+          <select className="select-placeholder" name="municipio" value={municipio} onChange={handleSelectChange} style={{ width: '100%',padding:"10px",fontSize:"1.2rem" }}>
      <option key="cualquiera" value={["0-cualquiera"]}>Todos</option>;
 
             {municipioOptions}
           </select>
         </p>
       </div>
-      <div className="col-lg-3 col-6">
+      <div className="col-lg-4 col-6">
         <p className="mt-3 ms-4 d-block text-start">
           <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Evento</span>
         </p>
         <p className="d-block text-start">
-          <select className="select-placeholder" name="tipo" value={tipo} onChange={handleSelectChange} style={{ width: '100%' }}>
+          <select className="select-placeholder" name="tipo" value={tipo} onChange={handleSelectChange} style={{ width: '100%',padding:"10px",fontSize:"1.2rem" }}>
           <option key="cualquiera" value={["0-cualquiera"]}>Todos</option>;
 
             {tipoOptions}
           </select>
         </p>
       </div>
-      <div className="col-lg-3 col-6">
+      <div className="col-lg-4 col-12 ">
         <p className="mt-3 ms-4 d-block text-start">
-          <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Fecha</span>
+          <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" ,paddingLeft:"10px",display:"block"}}>Fecha</span>
         </p>
         <p className="d-block text-start custom-datepicker">
           <DatePicker
@@ -380,18 +380,18 @@ useEffect(() => {
             placeholderText="Selecciona una fecha"
             isClearable
             className="form-control "
+            style={{fontSize:"1.2rem"}}
             
           />
         </p>
       </div>
-      <div className="col-lg-3 col-6">
+      {/* <div className="col-lg-3 col-6">
         <p className="mt-3 ms-4 d-block text-start">
-          {/* <span className="me-1" style={{ fontSize: "1.8em", color: "rgba(0,71,171,1)" }}>Buscar</span> */}&nbsp;
         </p>
         <p className="d-block text-start">
           <Search />
         </p>
-      </div>
+      </div> */}
 
 
    

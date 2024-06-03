@@ -136,7 +136,7 @@ if(localStorage.getItem('owner') === "true"){
                 {/* <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} /> */}
 
                 <Route path="/postpage" element={
-          <ProtectedRoute condition={owner!=="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+          <ProtectedRoute condition={owner!=="true" && admin!=="true" && logeado} redirectTo="/login" admin={admin}>
             <PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
           </ProtectedRoute>
         } />

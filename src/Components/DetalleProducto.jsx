@@ -17,7 +17,7 @@ import { FaUsers } from 'react-icons/fa';
 import {CompartirEventoButton} from "./EventCard";
 
 
-export  const MeGustaButton = ({username,evento,meGusta,setMeGusta}) => {
+export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState}) => {
   const usernameCaptured = localStorage.getItem("username");
 
   const [isPending, setIsPending] = useState(false);
@@ -31,6 +31,18 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta}) => {
         console.error('Token no encontrado. No se puede verificar la agenda.');
         return;
     }
+
+        const tokenExpiration = localStorage.getItem('tokenExpiration');
+    
+        if (token && tokenExpiration) {
+            const now = Date.now();
+            if (now > tokenExpiration) {
+              alert("Se ha caducado la sesión, no se han guardado los cambios");
+              toggleState(false);
+          
+  }}else{
+
+    
     console.log("Esto es un console log de add agenda");
 
     console.log(username);
@@ -64,6 +76,11 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta}) => {
     } catch (error) {
         console.error('Error al verificar la agenda:', error);
     }
+
+  }
+
+
+
 }
 
 
@@ -75,6 +92,15 @@ async function deleteAgenda(username, evento) {
       console.error('Token no encontrado. No se puede verificar la agenda.');
       return;
   }
+  const tokenExpiration = localStorage.getItem('tokenExpiration');
+    
+  if (token && tokenExpiration) {
+      const now = Date.now();
+      if (now > tokenExpiration) {
+        alert("Se ha caducado la sesión, no se han guardado los cambios");
+        toggleState(false);
+    
+}}else{
 
   console.log(username);
   console.log(evento);
@@ -108,7 +134,7 @@ async function deleteAgenda(username, evento) {
       console.error('Error al verificar la agenda:', error);
   }
 }
-
+}
 
 
 
@@ -297,7 +323,7 @@ console.log(evento);
           {/* <Card.Img src={primerElemento} style={{ width: '100%', height: 'auto' }} /> */}
               <Card.Img className="mt-lg-5 pt-lg-4"
                 src={evento.imageEvento}
-                style={{ width: '90%', height: 'auto' }}
+                style={{ width: '100%', minHeight: '300px', maxHeight:"300px",objectFit:"cover"}}
               />
 
         </div>
@@ -315,7 +341,7 @@ console.log(evento);
 
             
 
-        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton username={usernameCaptured} evento={eventID} meGusta={meGusta} setMeGusta={setMeGusta}/>}
+        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton username={usernameCaptured} evento={eventID} meGusta={meGusta} setMeGusta={setMeGusta} toggleState={toggleState}/>}
         <CompartirEventoButton evento={evento} />
         {/* {logeado && <QuieroConocerGente/>}*/}</div> 
 
