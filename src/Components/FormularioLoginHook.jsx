@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { TextField, Button, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { useRef } from "react";
+import jwtDecode from 'jwt-decode';
 
 
 export function FormularioLoginHook({toggleState}){
@@ -71,7 +72,19 @@ export function FormularioLoginHook({toggleState}){
        if (data.token) {
          console.log(data);
          toggleState(true);
-         localStorage.setItem('authToken', data.token); // Guarda el token en el local storage
+
+         const expiresInMinutes = parseInt(data.expiresIn);
+         console.log(expiresInMinutes);
+         const tokenExpiration = Date.now() + (expiresInMinutes * 60000);
+         console.log(tokenExpiration);
+
+
+         // Guardar el token y la hora de expiración en el localStorage
+         localStorage.setItem('authToken', data.token);
+         localStorage.setItem('tokenExpiration', tokenExpiration);
+
+
+
          localStorage.setItem('name', data.name); // Guarda el token en el local storage
          localStorage.setItem('email', data.email); // Guarda el token en el local storage
          localStorage.setItem('owner', data.owner); // Guarda el token en el local storage

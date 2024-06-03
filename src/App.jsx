@@ -2,6 +2,7 @@ import "./styles.css";
 import Plx from "react-plx";
 import {Parallax} from "react-parallax";
 import React,{ useEffect, useState, Suspense} from "react";
+import ProtectedRoute from './Components/ProtectedRoute';
 
 import {
   BrowserRouter as Router,
@@ -38,6 +39,31 @@ const ScrollToTop = () => {
 };
 
 export default function App() {
+var admin;
+var owner;
+if(localStorage.getItem('admin') === "true"){
+  admin="true";
+}else if(localStorage.getItem('admin') === "false"){
+  admin="false";
+
+}else{
+  admin="";
+
+}
+
+
+
+if(localStorage.getItem('owner') === "true"){
+  owner="true";
+}else if(localStorage.getItem('owner') === "false"){
+  owner="false";
+
+}else{
+  owner="";
+
+}
+
+
   const Rincones = React.lazy(() => import('./Pages/Rincones'));
 
   const [logeado, setLogeado] = useState(false);
@@ -48,6 +74,24 @@ export default function App() {
   function toggleState(valor)  {
     setLogeado(valor);
     }
+    useEffect(() => {
+      const authToken = localStorage.getItem('authToken');
+      const tokenExpiration = localStorage.getItem('tokenExpiration');
+  
+      if (authToken && tokenExpiration) {
+          const now = Date.now();
+          if (now > tokenExpiration) {
+              // El token ha expirado, limpiar localStorage
+              localStorage.clear();
+              toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+          } else {
+              // El token aún es válido, actualizar estado de autenticación si es necesario
+              toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+          }
+      }
+  }, []);
+  
+
 
     function cambiarRegistro (valor)  {
       setRegistro(valor);
@@ -66,15 +110,59 @@ export default function App() {
               
               <Routes>
                 
-              <Route path="/" element={<Events toggleState={toggleState} logeado={logeado}/>} />
-                
-                <Route path="/events" element={<Events toggleState={toggleState} logeado={logeado}/>} />
-                <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} />} />
-                <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
-                <Route path="/postpage" element={<PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
-                <Route path="/createevent" element={<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} />
-                <Route path="/detalle/:eventID" element={<DetalleProductoPage logeado={logeado} toggleState={toggleState}/>}></Route>
-                <Route path="/filtrar" element={<Filtro logeado={logeado} toggleState={toggleState}/>}></Route>
+              <Route path="/" element={
+          <ProtectedRoute condition={owner!=="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+            <Events toggleState={toggleState} logeado={logeado} />
+          </ProtectedRoute>
+        } />                
+              <Route path="/events" element={
+          <ProtectedRoute condition={owner!=="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+            <Events toggleState={toggleState} logeado={logeado} />
+          </ProtectedRoute>
+        } />
+
+
+                <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} toggleState={toggleState} />} />
+
+
+                <Route path="/login" element={
+          <ProtectedRoute condition={true===true} redirectTo="/login" admin={admin}>
+                <Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
+          </ProtectedRoute>
+        } />
+
+
+
+                {/* <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} /> */}
+
+                <Route path="/postpage" element={
+          <ProtectedRoute condition={owner!=="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+            <PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
+          </ProtectedRoute>
+        } />
+
+<Route path="/createevent" element={
+          <ProtectedRoute condition={owner==="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />          
+</ProtectedRoute>
+        } />
+
+{/* <Route path="/createevent" element={
+          <ProtectedRoute condition={owner && !admin} redirectTo="/login" admin={admin}>
+<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />          
+</ProtectedRoute>
+        } /> */}
+
+
+        
+<Route path="/detalle/:eventID" element={
+          <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
+<DetalleProductoPage logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
+        } />
+<Route path="/filtrar" element={
+          <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
+<Filtro logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
+        } />              
 
               </Routes>
             </Suspense>

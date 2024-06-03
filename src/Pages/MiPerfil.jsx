@@ -14,6 +14,26 @@ export function MiPerfil({ toggleState, logeado }) {
     const token = localStorage.getItem('authToken'); // Obtén el token del local storage
     const [items, setItems] = useState([]);
 
+
+    // useEffect(() => {
+    //     const authToken = localStorage.getItem('authToken');
+    //     const tokenExpiration = localStorage.getItem('tokenExpiration');
+    
+    //     if (authToken && tokenExpiration) {
+    //         const now = Date.now();
+    //         if (now > tokenExpiration) {
+    //             // El token ha expirado, limpiar localStorage
+    //             localStorage.clear();
+    //             alert("Se ha terminado la sesión");
+
+    //             toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+    //         } else {
+    //             // El token aún es válido, actualizar estado de autenticación si es necesario
+    //             toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+    //         }
+    //     }
+    // }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             try {

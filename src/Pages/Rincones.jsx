@@ -2,12 +2,33 @@ import "../styles.css";
 import Plx from "react-plx";
 import {Parallax} from "react-parallax";
 import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
-export default function Rincones({rincones, setRincones}) {
+export default function Rincones({rincones, setRincones,toggleState}) {
   const handleClick = () => {
     setRincones(false);
   };
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+    if (authToken && tokenExpiration) {
+        const now = Date.now();
+        if (now > tokenExpiration) {
+            // El token ha expirado, limpiar localStorage
+            localStorage.clear();
+            alert("Se ha terminado la sesión");
+
+            toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+        } else {
+            // El token aún es válido, actualizar estado de autenticación si es necesario
+            toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+        }
+    }
+}, []);
+
   return (
     <div     id="target"
  className="" style={{backgroundColor:"#333", zIndex:2,position:"absolute", top:0}}>

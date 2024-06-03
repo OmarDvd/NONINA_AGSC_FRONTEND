@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink,useLocation} from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import  {  LogoutConfirmation } from "./LogoutConfirmation";
 
 
 
@@ -32,6 +33,10 @@ export default function NavigationBar({ toggleState, logeado }) {
     img.src = "iconononina.jpg";
     img.onload = () => setImageLoaded(true);
   }, []);
+
+
+
+
 
   if (admin == "true") {
     console.log(admin+"eeee");
@@ -83,8 +88,11 @@ export default function NavigationBar({ toggleState, logeado }) {
                     Crear evento
                   </Nav.Link>
                   )}
+                {admin !== "true" && <LogoutConfirmation  toggleState={toggleState} logeado={logeado} />}
+
               </>
             )}
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
