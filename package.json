@@ -17,6 +17,7 @@
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-geosearch": "^3.11.1",
+    "mdb-react-ui-kit": "^8.0.0",
     "node-geocoder": "^4.3.0",
     "proj4": "^2.11.0",
     "react": "^18.2.0",
