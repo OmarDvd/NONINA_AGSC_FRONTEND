@@ -40,7 +40,7 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState})
               alert("Se ha caducado la sesión, no se han guardado los cambios");
               toggleState(false);
           
-  }}else{
+  }else{
 
     
     console.log("Esto es un console log de add agenda");
@@ -77,7 +77,7 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState})
         console.error('Error al verificar la agenda:', error);
     }
 
-  }
+  }}
 
 
 
@@ -100,7 +100,7 @@ async function deleteAgenda(username, evento) {
         alert("Se ha caducado la sesión, no se han guardado los cambios");
         toggleState(false);
     
-}}else{
+}else{
 
   console.log(username);
   console.log(evento);
@@ -136,7 +136,7 @@ async function deleteAgenda(username, evento) {
 }
 }
 
-
+}
 
 const handleMeGustaClick = async  () => {
 
