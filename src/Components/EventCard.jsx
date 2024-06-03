@@ -79,11 +79,11 @@ export function EventCard({
       <Card.Text className="cardText">{activity.municipalityName}</Card.Text>
     </Card.Body>
   </Link>
-  <div className="cardFooter">
-    {/* {logeado && <MeGustaButton evento={activity} meGusta={meGusta} setMeGusta={setMeGusta}/>} */}
+  {/* <div className="cardFooter">
+    {logeado && <MeGustaButton evento={activity} meGusta={meGusta} setMeGusta={setMeGusta}/>}
     <CompartirEventoButton evento={activity} />
-    {/* {logeado && <QuieroConocerGente />} */}
-  </div>
+    {logeado && <QuieroConocerGente />}
+  </div> */}
 </Card>
 );
 }

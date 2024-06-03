@@ -6,7 +6,10 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
 
-export function MapaBuscar() {
+export function MapaBuscar({
+  valueMap,
+  setValueMap
+}) {
     const [coordenadas, setCoordenadas] = useState(null);
     const customIconUrl = '/marcador-de-posicion.png';
   
@@ -20,6 +23,17 @@ export function MapaBuscar() {
   
     function handleMapClick(event) {
       setCoordenadas(event.latlng);
+      // Obtenemos la representación de cadena de la posición
+      const latlngString = event.latlng.toString();
+
+      // Eliminamos los paréntesis y dividimos la cadena en partes usando la coma como delimitador
+      const [lat, lng] = latlngString.slice(7, -1).split(',');
+    
+      // Formateamos la cadena según lo requerido
+      const formattedString = `${lat.trim()}latlon${lng.trim()}`;
+    
+      // Llamamos a setValueMap con la cadena formateada
+      setValueMap(formattedString);
       console.log(coordenadas);
     }
   
@@ -27,7 +41,7 @@ export function MapaBuscar() {
       <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "300px",zIndex:1}}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MarcadorSeleccion onClick={handleMapClick} />
-        {coordenadas && <Marker position={coordenadas} icon={customIcon} ><Popup>Coordenadas: {coordenadas.toString()}</Popup></Marker>}
+        {coordenadas && <Marker position={coordenadas} icon={customIcon} ><Popup>{valueMap}</Popup></Marker>}
         <LeafletControlGeocoder />
       </MapContainer>
     );

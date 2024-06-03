@@ -3,12 +3,107 @@ import { TextField, Button, RadioGroup, FormControlLabel, Radio,Input } from '@m
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { MapaBuscar } from "../Components/MapaBuscar";
+import { Select, MenuItem } from '@mui/material';
 
 
 export function FormularioCreateHookEvent(){
+
+  const [valueMap, setValueMap] = useState('');
+
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+
+
+  const [municipio, setMunicipio] = useState('cualquiera');
+  const [municipioId, setMunicipioId] = useState(0);
+  const [municipioOptions, setMunicipioOptions] = useState([]);
+
+  const [tipo, setTipo] = useState('cualquiera');
+  const [tipoId, setTipoId] = useState(0);
+  const [tipoOptions, setTipoOptions] = useState([]);
+
+
+  useEffect(() => {
+    fetch('https://localhost:7070/api/Municipalities')
+      .then(response => response.json())
+      .then(data => {
+  
+  
+        const options = data.map(municipio => (
+          // <option key={municipio.id} value={municipio.name} >{municipio.name}</option>
+  <option key={municipio.id} value={`${municipio.id}-${municipio.name}`}>
+            {municipio.name}
+          </option>
+        ));
+        // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Toddos</option>);
+        setMunicipioOptions(options);
+        setMunicipioId(options[0].key);
+      })
+      .catch(error => console.error('Error fetching municipio :', error));
+  }, []);
+  
+
+  useEffect(() => {
+    fetch('https://localhost:7070/api/Categories')
+      .then(response => response.json())
+      .then(data => {
+  
+        const options = data.map(tipo => (
+          // <option key={tipo.id} value={tipo.name} >{tipo.name}</option>
+  <option key={tipo.id} value={`${tipo.id}-${tipo.name}`}>
+          {tipo.name}
+        </option>
+        ));
+        // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Tosdos</option>);
+        setTipoOptions(options);
+        setTipoId(options[0].key);
+
+      })
+      .catch(error => console.error('Error fetching tipo :', error));
+  }, []);
+  
+
+
+
+
+
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+
+    // Separar el id y el name utilizando el guion medio como delimitador
+    const [selectedId, selectedName] = value.split("-");
+  
+    // Actualizar el estado con el id y el name separados
+    switch (name) {
+      case 'municipio':
+        setMunicipio(value);
+        setMunicipioId(selectedId);
+
+        break;
+
+    
+      case 'tipo':
+        setTipo(value);
+        setTipoId(selectedId);
+
+
+        break;
+      default:
+        break;
+    }
+
+  };
+
+
+
+
+
+
+
+
+
   const formularioRef = useRef(null);
     const {register,handleSubmit,formState: { errors }}=useForm();
-
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
     const handleImagenChange = (event) => {
@@ -32,19 +127,42 @@ export function FormularioCreateHookEvent(){
         const formData = new FormData();
     
         // Agregar los datos del formulario al FormData
-        for (const key in data) {
-          formData.append(key, data[key]);
-        }
+        // for (const key in data) {
+        //   formData.append(key, data[key]);
+        // }
         
         // Agregar la imagen al FormData
         if (imagenSeleccionada) {
           formData.append("ImageFile", imagenSeleccionada);
         }
-    
-        const response = await fetch('https://localhost:7070/api/Evento?Id=1&Title=' + encodeURIComponent(data.Title) + '&Description=' + encodeURIComponent(data.Description) + '&PlaceLabel=' + encodeURIComponent(data.PlaceLabel) + '&PlaceCoordinates=' + encodeURIComponent(data.PlaceCoordinates) + '&year=' + data.Date.slice(0, 4) + '&month=' + data.Date.slice(5, 7) + '&day=' + data.Date.slice(8, 10) + '&dayOfWeek=0&hour=' + data.Time.slice(0, 2) + '&minute=' + data.Time.slice(3, 5) + '&MunicipalityId=1&CategoryId=2&UserId=1&ImageEvento=dfdf', {
+    console.log("Esto es loq ue enviamos para guardar:")
+    console.log(formData);
+    const url='https://localhost:7070/api/Evento?Id=1&Title=' + encodeURIComponent(data.titulo) 
+    + '&Description=' + encodeURIComponent(data.descripcion) 
+    + '&PlaceLabel=' + encodeURIComponent(data.ubicacion) 
+    + '&PlaceCoordinates=' + valueMap
+    + '&Date=' + encodeURIComponent(data.fecha)
+    + '&year=' + data.fecha.slice(0, 4) 
+    + '&month=' + data.fecha.slice(5, 7) 
+    + '&day=' + data.fecha.slice(8, 10) 
+    + '&dayOfWeek=0&hour=' + data.fecha.slice(0, 2) 
+    + '&minute=' + data.hora.slice(3, 5) 
+    + '&Time=' + encodeURIComponent(data.hora)
+    + '&MunicipalityId='+ municipioId
+    + '&CategoryId='+ tipoId 
+    +'&UserId='+id+'&ImageEvento=dfdf';
+    console.log(url);
+
+        const response = await fetch(url, {
           method: 'POST',
- 
-          body: formData, 
+
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            mode: 'cors',
+
+            body: formData,
+        
         });
     
         if (!response.ok) {
@@ -52,7 +170,7 @@ export function FormularioCreateHookEvent(){
         }
     
         const responseData = await response.json();
-        alert("Cliente creado");
+        alert("Evento creado");
         formularioRef.current.reset();
     
       } catch (error) {
@@ -74,12 +192,13 @@ export function FormularioCreateHookEvent(){
         accept="image/jpeg, image/png, image/gif, image/webp"
         id="imagen"
         name="imagen"
+        style={{color:"#333"}}
         {...register("imagen", { required: true })}
         onChange={handleImagenChange} // Capturar cambios en la imagen seleccionada
         inputProps={{ style: { display: 'none' } }}
       />
       <label htmlFor="imagen">
-        <Button component="span" variant="outlined" style={{ textTransform: 'none' }}>
+        <Button component="span" variant="outlined" style={{ textTransform: 'none' ,color:"#333"}}>
           Seleccionar imagen
         </Button>
       </label>
@@ -161,8 +280,26 @@ export function FormularioCreateHookEvent(){
 </p>
       {/* Campo de entrada de ubicación en mapa */}
       
-      <p>
+<p>
+  <p className="mt-3 ms-4 d-block text-center">
+    <span className="me-1" style={{ fontSize: "1.3em", color: "#333" }}>Municipio</span>
+  </p>
+  <select className="select-placeholder" name="municipio" value={municipio} onChange={handleSelectChange} style={{ width: '100%',backgroundColor:"white",padding:"10px" }}>
 
+{municipioOptions}
+</select>
+</p>
+
+<p>
+  <p className="mt-3 ms-4 d-block text-center">
+    <span className="me-1" style={{ fontSize: "1.3em", color: "#333" }}>Tipo de evento</span>
+  </p>
+  <select className="select-placeholder" name="tipo" value={tipo} onChange={handleSelectChange} style={{ width: '100%', backgroundColor:"white",padding:"10px" }}>
+
+            {tipoOptions}
+          </select>
+
+</p>
 
       <TextField
         id="ubicacion"
@@ -177,11 +314,10 @@ export function FormularioCreateHookEvent(){
       {errors.ubicacion && (
         <p role="alert" style={{ color: 'crimson' }}>Debe seleccionar una ubicación en el mapa para el evento</p>
       )}
-</p>
 
   {/* Agregar aquí el campo para seleccionar la ubicación en el mapa */}
-<p className="Granaina fs-2" style={{color:"rgba(0,71,171,1)"}} >Busca y marca abajo en el mapa para más exactitud</p>
-<MapaBuscar/>
+<p className="mb-2 mt-4" style={{fontSize: "1.3em", color: "#333"}} >Busca y marca abajo en el mapa para más exactitud</p>
+<MapaBuscar valueMap={valueMap} setValueMap={setValueMap}/>
 
 
 
