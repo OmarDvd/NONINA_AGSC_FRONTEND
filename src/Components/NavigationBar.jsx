@@ -8,6 +8,14 @@ import React, { useEffect, useState } from "react";
 
 
 export default function NavigationBar({ toggleState, logeado }) {
+
+
+  const owner = localStorage.getItem("owner");
+  const admin = localStorage.getItem("admin");
+
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem('authToken');
+
   const handleLogout = () => {
     if (window.confirm('¿Estás seguro que deseas cerrar sesión?')) {
       toggleState(false);
@@ -25,7 +33,14 @@ export default function NavigationBar({ toggleState, logeado }) {
     img.onload = () => setImageLoaded(true);
   }, []);
 
+  if (admin == "true") {
+    console.log(admin+"eeee");
+    
+    return null;
+  }
+
   return (
+    
     <Navbar style={{ backgroundColor: 'rgba(0, 71, 171, 1)', position: 'sticky', top: '0', zIndex: '3',display: isRinconesPage ? "none" : "block" }} variant="dark" expand="md">
       <Container className='d-flex '>
         <Navbar.Brand as={NavLink} to="/rincones">
@@ -46,8 +61,9 @@ export default function NavigationBar({ toggleState, logeado }) {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={NavLink} to="/events" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">Eventos</Nav.Link>
-            {logeado === false ? (
+          {owner !== "true" && (
+              <Nav.Link as={NavLink} to="/events" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">Eventos</Nav.Link>
+            )}            {logeado === false ? (
               <Nav.Link as={NavLink} to="/login" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">
                 Login/Registro
               </Nav.Link>
@@ -56,12 +72,17 @@ export default function NavigationBar({ toggleState, logeado }) {
                 <Nav.Link as={NavLink} to="/login" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">
                   Ir a mi perfil
                 </Nav.Link>
+                {owner !== "true" && (
+
                 <Nav.Link as={NavLink} to="/postpage" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">
                   Socialicemos
                 </Nav.Link>
-                <Nav.Link as={NavLink} to="/createevent" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">
-                  Crear evento
-                </Nav.Link>
+                )}
+                {owner !== "false" && (
+                  <Nav.Link as={NavLink} to="/createevent" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 min-width-150">
+                    Crear evento
+                  </Nav.Link>
+                  )}
               </>
             )}
           </Nav>
