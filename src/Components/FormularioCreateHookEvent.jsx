@@ -6,7 +6,9 @@ import { MapaBuscar } from "../Components/MapaBuscar";
 import { Select, MenuItem } from '@mui/material';
 
 
-export function FormularioCreateHookEvent(){
+export function FormularioCreateHookEvent({
+  toggleState
+}){
 
   const [valueMap, setValueMap] = useState('');
 
@@ -114,6 +116,23 @@ export function FormularioCreateHookEvent(){
 
     
     const createList = async (data) => {
+      const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+
+      // Verifica si el token existe antes de continuar
+      if (!token) {
+          console.error('Token no encontrado. No se puede verificar la agenda.');
+          return;
+      }
+  
+          const tokenExpiration = localStorage.getItem('tokenExpiration');
+      
+          if (token && tokenExpiration) {
+              const now = Date.now();
+              if (now > tokenExpiration) {
+                alert("Se ha caducado la sesión, no se han guardado los cambios");
+                toggleState(false);
+            
+    }else{
       try {
 
         // const nuevoIdCliente =   await incrementaId(); 
@@ -147,7 +166,7 @@ export function FormularioCreateHookEvent(){
     
     console.log("Esto es loq ue enviamos para guardar:")
     console.log(formData);
-    const url='https://localhost:7070/api/Evento?Id=1&Title=' + encodeURIComponent(data.titulo) 
+    const url='https://localhost:7070/api/Evento/AddEventoToken?Id=1&Title=' + encodeURIComponent(data.titulo) 
     + '&Description=' + encodeURIComponent(data.descripcion) 
     + '&PlaceLabel=' + encodeURIComponent(data.ubicacion) 
     + '&PlaceCoordinates=' + valueMap
@@ -160,7 +179,7 @@ export function FormularioCreateHookEvent(){
     + '&Time=' + encodeURIComponent(data.hora)
     + '&MunicipalityId='+ municipioId
     + '&CategoryId='+ tipoId 
-    +'&UserId='+id+'&ImageEvento=dfdf';
+   +'&ImageEvento=dfdf';
     console.log(url);
 
         const response = await fetch(url, {
@@ -176,7 +195,7 @@ export function FormularioCreateHookEvent(){
         });
     
         if (!response.ok) {
-          throw new Error('Error al crear la lista');
+          throw new Error('Error al crear la listaa');
         }
     
         const responseData = await response.json();
@@ -186,6 +205,7 @@ export function FormularioCreateHookEvent(){
       } catch (error) {
         console.error("Error al crear la lista:", error);
       }
+    }}
     };
     return (
         <div>

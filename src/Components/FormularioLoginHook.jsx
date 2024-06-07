@@ -97,11 +97,13 @@ export function FormularioLoginHook({toggleState}){
 
          formularioRef.current.reset();
         } else {
-          alert("Usuario o contraseña incorrectos");
+          alert("Contraseña incorrecta");
         }
       })
       .catch(error => {
         console.error("Error al iniciar sesión:", error);
+        alert("Usuario inexistente");
+
       });
   };
 

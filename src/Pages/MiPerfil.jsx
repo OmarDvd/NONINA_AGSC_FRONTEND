@@ -46,7 +46,7 @@ export function MiPerfil({ toggleState, logeado }) {
                         console.error('Token no encontrado. No se puede verificar la agenda.');
                         return;
                     }
-                    response = await fetch(`https://localhost:7070/api/Evento/allUserOwner?userId=${id}`, {
+                    response = await fetch(`https://localhost:7070/api/Evento/GetEventosUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
@@ -56,7 +56,7 @@ export function MiPerfil({ toggleState, logeado }) {
                 } else {
                     console.log("clienteeee");
 
-                    response = await fetch(`https://localhost:7070/api/Agendas/allUserPeople?userId=${id}`, {
+                    response = await fetch(`https://localhost:7070/api/Agendas/GetAgendasUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
@@ -82,70 +82,86 @@ export function MiPerfil({ toggleState, logeado }) {
     };
 
     const handleDelete = async (id) => {
-        // eslint-disable-next-line no-restricted-globals
-        if (confirm("¿Estás seguro de que deseas eliminar?")) {
-            const token = localStorage.getItem('authToken');
-            const username = localStorage.getItem('username');
 
-            // Verifica si el token existe antes de continuar
-            if (!token) {
-                console.error('Token no encontrado. No se puede verificar la agenda.');
-                return;
-            }
-
-            console.log("Este es el id de borrar en mi perfil", id);
-
-            const body = {
-                username: username,
-                eventoId: id
-            };
-
-            let response;
-            try {
-                if (owner === "true") {
-                    response = await fetch(`https://localhost:7070/api/Evento/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        mode: 'cors',
-                    });
-                } else {
-                    response = await fetch(`https://localhost:7070/api/Agendas/DeleteAgenda`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        mode: 'cors',
-                        body: JSON.stringify(body)
-                    });
-                }
-
-                if (response.ok) {
-                    // Actualizar la lista de items después de eliminar
-                    if (owner === "true") {
-
-                    setItems(prevItems => prevItems.filter(item => item.id !== id));
-                    }else{
-                      setItems(prevItems => prevItems.filter(item => item.eventoId !== id));
-
-                    }
-                    alert("Evento eliminado con éxito");
-                } else {
-                    console.log(response);
-                    alert("Error al eliminar el evento");
-                }
-            } catch (error) {
-                console.error('Error deleting data', error);
-                alert("Error al eliminar el evento catch");
-            }
-        } else {
-            alert("No se ha borrado nada");
+        const tokenExpiration = localStorage.getItem('tokenExpiration');
+      
+        if (token && tokenExpiration) {
+            const now = Date.now();
+            if (now > tokenExpiration) {
+              alert("Se ha caducado la sesión, no se han guardado los cambios");
+              toggleState(false);
+          
+      }else{
+          // eslint-disable-next-line no-restricted-globals
+          if (confirm("¿Estás seguro de que deseas eliminar?")) {
+              const token = localStorage.getItem('authToken');
+              const username = localStorage.getItem('username');
+  
+              // Verifica si el token existe antes de continuar
+              if (!token) {
+                  console.error('Token no encontrado. No se puede verificar la agenda.');
+                  return;
+              }
+  
+              console.log("Este es el id de borrar en mi perfil", id);
+  
+              // const body = {
+              //     username: username,
+              //     eventoId: id
+              // };
+  
+      
+  
+  
+              let response;
+              try {
+                  if (owner === "true") {
+                      response = await fetch(`https://localhost:7070/api/Evento/DeleteEventoToken`, {
+                          method: 'DELETE',
+                          headers: {
+                              'Content-Type': 'application/json',
+                              'Authorization': `Bearer ${token}`
+                          },
+                          mode: 'cors',
+                          body: JSON.stringify(id)
+  
+                      });
+                  } else {
+                      response = await fetch(`https://localhost:7070/api/Agendas/DeleteAgendaToken`, {
+                          method: 'DELETE',
+                          headers: {
+                              'Content-Type': 'application/json',
+                              'Authorization': `Bearer ${token}`
+                          },
+                          mode: 'cors',
+                          body: JSON.stringify(id)
+                      });
+                  }
+  
+                  if (response.ok) {
+                      // Actualizar la lista de items después de eliminar
+                      if (owner === "true") {
+  
+                      setItems(prevItems => prevItems.filter(item => item.id !== id));
+                      }else{
+                        setItems(prevItems => prevItems.filter(item => item.eventoId !== id));
+  
+                      }
+                      alert("Evento eliminado con éxito");
+                  } else {
+                      console.log(response);
+                      alert("Error al eliminar el evento");
+                  }
+              } catch (error) {
+                  console.error('Error deleting data', error);
+                  alert("Error al eliminar el evento catch");
+              }
+          } else {
+              alert("No se ha borrado nada");
+          }
         }
-    };
-
+      }
+      };
     if (cargando) {
         return (
             <>
@@ -241,7 +257,13 @@ export function MiPerfil({ toggleState, logeado }) {
                                                         {item.date} - {item.time}
                                                     </td>
                                                     <td style={{ maxWidth: "8vw" }}>
-                                                        {owner === "true" && <CiEdit onClick={() => handleEdit(item.id)} size={24} style={{ marginRight: "10", cursor: "pointer" }} />}
+                                                        {owner === "true" && 
+                                                        
+                                                        <Link to={"/editevent/" + item.id} style={{textDecoration:'none'}}>
+
+                                                        <CiEdit  size={24} style={{ marginRight: "10", cursor: "pointer" }} />
+                                                        </Link>
+                                                        }
                                                         {owner === "true" ?
                                                             <RiDeleteBin6Line onClick={() => handleDelete(item.id)} size={24} style={{ cursor: "pointer" }} />
                                                             :

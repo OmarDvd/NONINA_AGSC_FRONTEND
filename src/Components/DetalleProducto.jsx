@@ -17,7 +17,8 @@ import { FaUsers } from 'react-icons/fa';
 import {CompartirEventoButton} from "./EventCard";
 
 
-export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState}) => {
+export  const MeGustaButton = ({evento,meGusta,setMeGusta,toggleState}) => {
+  
   const usernameCaptured = localStorage.getItem("username");
 
   const [isPending, setIsPending] = useState(false);
@@ -29,6 +30,7 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState})
     // Verifica si el token existe antes de continuar
     if (!token) {
         console.error('Token no encontrado. No se puede verificar la agenda.');
+        
         return;
     }
 
@@ -43,16 +45,10 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState})
   }else{
 
     
-    console.log("Esto es un console log de add agenda");
 
-    console.log(username);
-    console.log(evento);
 
-    const url = 'https://localhost:7070/api/Agendas/AddAgenda';
-    const body = {
-        username: username,
-        eventoId: evento
-    };
+    const url = 'https://localhost:7070/api/Agendas/AddAgendaToken';
+
 
     try {
         const response = await fetch(url, {
@@ -62,7 +58,7 @@ export  const MeGustaButton = ({username,evento,meGusta,setMeGusta,toggleState})
                 'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
             },
             mode: 'cors',
-            body: JSON.stringify(body)
+            body: JSON.stringify(evento)
         });
 
         if (response.ok) {
@@ -98,28 +94,24 @@ async function deleteAgenda(username, evento) {
       const now = Date.now();
       if (now > tokenExpiration) {
         alert("Se ha caducado la sesión, no se han guardado los cambios");
+
         toggleState(false);
     
 }else{
 
-  console.log(username);
-  console.log(evento);
 
-  const url = 'https://localhost:7070/api/Agendas/DeleteAgenda';
-  const body = {
-      username: username,
-      eventoId: evento
-  };
+
+  const url = 'https://localhost:7070/api/Agendas/DeleteAgendaToken';
 
   try {
       const response = await fetch(url, {
           method: 'DELETE',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
+              'Authorization': `Bearer ${token}` 
           },
           mode: 'cors',
-          body: JSON.stringify(body)
+          body: JSON.stringify(evento)
       });
 
       if (response.ok) {
@@ -139,6 +131,23 @@ async function deleteAgenda(username, evento) {
 }
 
 const handleMeGustaClick = async  () => {
+  const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+
+  // Verifica si el token existe antes de continuar
+  if (!token) {
+      console.error('Token no encontrado. No se puede verificar la agenda.');
+      return;
+  }
+  const tokenExpiration = localStorage.getItem('tokenExpiration');
+    
+  if (token && tokenExpiration) {
+      const now = Date.now();
+      if (now > tokenExpiration) {
+        alert("Se ha caducado la sesión, no se han guardado los cambios");
+        localStorage.clear();
+        toggleState(false);
+    return;
+}else{
 
   if (isPending) return;
 
@@ -155,7 +164,7 @@ const handleMeGustaClick = async  () => {
 // Actualizar el estado
 setMeGusta(!meGusta);
 setIsPending(false);
-};
+}}};
 
 
 
@@ -207,21 +216,16 @@ export function DetalleProducto({
     console.log(username);
     console.log(eventID);
 
-    const url = 'https://localhost:7070/api/Agendas/getAgenda';
-    const body = {
-        username: username,
-        eventoId: eventID
-    };
+    const url = `https://localhost:7070/api/Agendas/${eventID}`;
+
 
     try {
         const response = await fetch(url, {
-            method: 'POST',
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
             },
-            mode: 'cors',
-            body: JSON.stringify(body)
+            mode: 'cors'
         });
 
         if (response.ok) {
@@ -234,7 +238,7 @@ export function DetalleProducto({
             }
             return data;
         } else {
-            console.error('Error al verificar la agenda:', response.statusText);
+            console.error('Error al verificar la agendaaaa:', response.statusText);
         }
     } catch (error) {
         console.error('Error al verificar la agenda:', error);
@@ -335,13 +339,13 @@ console.log(evento);
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b>{evento.date.slice(8, 10)}-{evento.date.slice(5, 7) }-{evento.date.slice(0, 4) }</Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}><b  style={{color:'rgba(0,71,171,1)'}}></b>{evento.time.slice(0,2)}:{evento.time.slice(3,5)} </Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento.categoryName}</Card.Text>
-            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento.munipalityName}</Card.Text>
+            <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento.municipalityName}</Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento.username}</Card.Text>
             <Card.Text style={{color:'rgba(0,71,171,1)',fontSize:"1.4em"}}> <b  style={{color:'rgba(0,71,171,1)'}}></b> {evento.placeLabel}</Card.Text>
 
             
 
-        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton username={usernameCaptured} evento={eventID} meGusta={meGusta} setMeGusta={setMeGusta} toggleState={toggleState}/>}
+        <div className="d-flex justify-content-around ">        {logeado && <MeGustaButton  evento={eventID} meGusta={meGusta} setMeGusta={setMeGusta} toggleState={toggleState}/>}
         <CompartirEventoButton evento={evento} />
         {/* {logeado && <QuieroConocerGente/>}*/}</div> 
 

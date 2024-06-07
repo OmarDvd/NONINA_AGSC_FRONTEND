@@ -20,6 +20,8 @@ import NavigationBar from "./Components/NavigationBar";
 import Events from "./Pages/Events";
 import {Filtro} from "./Pages/Filtro";
 import {PostPage} from "./Pages/PostPage";
+import {EditEvent} from "./Pages/EditEvent";
+
 import {Footer} from "./Components/Footer";
 
 import Login from "./Pages/Login";
@@ -155,10 +157,19 @@ if(localStorage.getItem('owner') === "true"){
 
 
         
-<Route path="/detalle/:eventID" element={
-          <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
+{/* <Route path="/detalle/:eventID" element={
+          <ProtectedRoute condition={admin!=="true"} redirectTo="/detalle/:eventID" admin={admin}>
 <DetalleProductoPage logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
+        } /> */}
+        <Route path="/detalle/:eventID" element={
+<DetalleProductoPage logeado={logeado} toggleState={toggleState}/>}/>
+
+<Route path="/editevent/:eventID" element={
+  <ProtectedRoute condition={owner==="true" && admin!=="true"} redirectTo="/login" admin={admin}>
+<EditEvent logeado={logeado} toggleState={toggleState}/>
+</ProtectedRoute>
         } />
+
 <Route path="/filtrar" element={
           <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
 <Filtro logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
