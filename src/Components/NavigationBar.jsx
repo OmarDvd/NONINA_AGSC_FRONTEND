@@ -55,14 +55,26 @@ export default function NavigationBar({ toggleState, logeado }) {
     setSpanish(!spanish);
   };
 
+
+  const handleOpenInNewTab = (event) => {
+    // Prevenir la navegación predeterminada
+    event.preventDefault();
+    // Obtener la URL del enlace
+    const url = event.currentTarget.getAttribute('href');
+    // Abrir en una nueva pestaña
+    const newWindow = window.open(url, '_blank');
+    // Asegurarse de que el nuevo contexto no pueda acceder al contexto actual
+    if (newWindow) newWindow.opener = null;
+  };
+
   if (admin === "true") {
     return null;
   }
 
   return (
-    <Navbar style={{ backgroundColor: 'rgba(0, 71, 171, 1)', position: 'sticky', top: '0', zIndex: '3', display: isRinconesPage ? "none" : "block" }} variant="dark" expand="md">
+    <Navbar style={{ backgroundColor: 'rgba(0, 71, 171, 1)', position: 'sticky', top: '0', zIndex: '3', display: isRinconesPage ? "none" : "block" }} variant="dark" expand="lg">
       <Container className='d-flex '>
-        <Navbar.Brand as={NavLink} to="/rincones">
+        <Navbar.Brand as={NavLink} to="/rincones" onClick={handleOpenInNewTab}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{ height: '80px', width: '80px', marginRight: '20px', borderRadius: "50%", backgroundColor: '#ccc' }}>
               {imageLoaded ? (
@@ -90,10 +102,10 @@ export default function NavigationBar({ toggleState, logeado }) {
               <>
                 <Nav.Link as={NavLink} to="/login" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 nav-link-fixed-width">
                 {mensajes[2]}                </Nav.Link>
-                {owner !== "true" && (
+                {/* {owner !== "true" && (
                   <Nav.Link as={NavLink} to="/postpage" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 nav-link-fixed-width">
 {mensajes[3]}                  </Nav.Link>
-                )}
+                )} */}
                 {owner !== "false" && (
                   <Nav.Link as={NavLink} to="/createevent" style={{ fontSize: "1.5em" }} className="ms-3 ps-3 nav-link-fixed-width">
 {mensajes[5]}                  
@@ -103,7 +115,7 @@ export default function NavigationBar({ toggleState, logeado }) {
               </>
             )}
             
-            <div onClick={handleSelectLanguage} style={{ cursor: "pointer", position:"absolute",left:"90%" }}>
+            <div onClick={handleSelectLanguage} style={{ cursor: "pointer", position:"absolute",left:"93%", top:"43%" }}>
               {spanish ? <BanderaUK /> : <BanderaEspanola />}
             </div>
             

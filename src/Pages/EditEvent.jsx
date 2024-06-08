@@ -3,11 +3,12 @@ import NavigationBar from "../Components/NavigationBar";
 import { FormularioCreateHookEventEdit } from "../Components/FormularioCreateHookEventEdit";
 import { useEffect, useState,useParams } from "react";
 
+
 export function EditEvent(
     { toggleState, logeado,cambiarRegistro }
 ) {
 
-    let { eventID } = useParams();
+
 
 
     useEffect(() => {
@@ -49,8 +50,15 @@ if(localStorage.getItem('authToken')!==""){
                                     </div> 
                                     
                                     <div class="px-4 py-3" > 
-                                        <h5 class="mb-3">Crear evento</h5> 
-                                        <FormularioCreateHookEventEdit toggleState={toggleState} id={eventID} />
+                                        <h5 class="mb-3">Editar evento</h5> 
+
+
+
+
+
+
+<FormularioCreateHookEventEdit toggleState={toggleState} />
+
 
                                     </div> 
                                     

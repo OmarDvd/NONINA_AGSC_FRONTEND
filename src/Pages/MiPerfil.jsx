@@ -181,6 +181,7 @@ export function MiPerfil({ toggleState, logeado }) {
                                                     <th style={{ width: "8vw" }}>Evento</th>
                                                     <th style={{ width: "8vw" }}>Lugar</th>
                                                     <th style={{ width: "8vw" }}>Fecha/Hora</th>
+                                                    {owner ==="true" && <th style={{ width: "8vw" }}>Asistentes</th>}
                                                     <th style={{ width: "8vw" }}></th>
                                                 </tr>
                                             </thead>
@@ -231,6 +232,7 @@ export function MiPerfil({ toggleState, logeado }) {
                                                 <th style={{ width: "8vw" }}>Evento</th>
                                                 <th style={{ width: "8vw" }}>Lugar</th>
                                                 <th style={{ width: "8vw" }}>Fecha/Hora</th>
+                                                {owner ==="true" && <th style={{ width: "8vw" }}>Asistentes</th>}
                                                 <th style={{ width: "8vw" }}></th>
                                             </tr>
                                         </thead>
@@ -256,16 +258,21 @@ export function MiPerfil({ toggleState, logeado }) {
                                                     <td style={{ maxWidth: "8vw" }}>
                                                         {item.date} - {item.time}
                                                     </td>
+                                                    {owner ==="true" && <td style={{ maxWidth: "8vw" }}>
+                                                        {item.agendasCount}
+                                                    </td>}
+
+                                                    
                                                     <td style={{ maxWidth: "8vw" }}>
                                                         {owner === "true" && 
                                                         
-                                                        <Link to={"/editevent/" + item.id} style={{textDecoration:'none'}}>
+                                                        <Link to={"/editevent/" + item.id} style={{textDecoration:'none',color:"black"}}>
 
                                                         <CiEdit  size={24} style={{ marginRight: "10", cursor: "pointer" }} />
                                                         </Link>
                                                         }
                                                         {owner === "true" ?
-                                                            <RiDeleteBin6Line onClick={() => handleDelete(item.id)} size={24} style={{ cursor: "pointer" }} />
+                                                            <RiDeleteBin6Line onClick={() => handleDelete(item.id)}  size={24} style={{ cursor: "pointer" }} />
                                                             :
                                                             <RiDeleteBin6Line onClick={() => handleDelete(item.eventoId)} size={24} style={{ cursor: "pointer" }} />
                                                         }

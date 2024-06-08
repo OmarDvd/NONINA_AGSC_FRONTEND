@@ -137,11 +137,11 @@ if(localStorage.getItem('owner') === "true"){
 
                 {/* <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} /> */}
 
-                <Route path="/postpage" element={
+                {/* <Route path="/postpage" element={
           <ProtectedRoute condition={owner!=="true" && admin!=="true" && logeado} redirectTo="/login" admin={admin}>
             <PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
           </ProtectedRoute>
-        } />
+        } /> */}
 
 <Route path="/createevent" element={
           <ProtectedRoute condition={owner==="true" && admin!=="true"} redirectTo="/login" admin={admin}>
@@ -170,10 +170,10 @@ if(localStorage.getItem('owner') === "true"){
 </ProtectedRoute>
         } />
 
-<Route path="/filtrar" element={
+{/* <Route path="/filtrar" element={
           <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
 <Filtro logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
-        } />              
+        } />               */}
 
               </Routes>
             </Suspense>
