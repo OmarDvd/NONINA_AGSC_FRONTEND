@@ -6,6 +6,7 @@ import { Spinner } from "../Components/Spinner";
 import { Link } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import ModalPeople from "../Components/ModalPeople";
 
 export function MiPerfil({ toggleState, logeado }) {
     const [cargando, setCargando] = useState(true);
@@ -66,6 +67,8 @@ export function MiPerfil({ toggleState, logeado }) {
                 }
 
                 const data = await response.json();
+                console.log(data);
+                console.log("estos son mis datos");
                 setItems(data);
                 setCargando(false);
             } catch (error) {
@@ -259,7 +262,9 @@ export function MiPerfil({ toggleState, logeado }) {
                                                         {item.date} - {item.time}
                                                     </td>
                                                     {owner ==="true" && <td style={{ maxWidth: "8vw" }}>
-                                                        {item.agendasCount}
+                                                        <span style={{display:"inline-block",marginRight:"10px"}} >{item.agendasCount} </span>
+                                                        <ModalPeople modalContent={item.userNames} />
+
                                                     </td>}
 
                                                     
