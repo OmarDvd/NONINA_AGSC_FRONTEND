@@ -226,7 +226,13 @@ export function MiPerfil({ toggleState, logeado }) {
                                                         {item.placeLabel} ({item.municipalityName})
                                                     </td>
                                                     <td style={{ maxWidth: "8vw" }}>
-                                                        {item.date} - {item.time}
+                                                        {/* {item.date} - {item.time} */}
+
+
+                                                        {item.date.slice(8, 10)}-{item.date.slice(5, 7) }-{item.date.slice(0, 4) } - 
+                                                        {item.time.slice(0,2)}:{item.time.slice(3,5)} 
+
+
                                                     </td>
                                                     {owner ==="true" && <td style={{ maxWidth: "8vw" }}>
                                                         <span style={{display:"inline-block",marginRight:"10px"}} >{item.agendasCount} </span>

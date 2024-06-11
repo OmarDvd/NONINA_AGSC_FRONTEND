@@ -36,8 +36,22 @@ export default function Login({toggleState,cambiarRegistro,logeado}) {
     }
 }, []);
 
-if(logeado){
+const isAdmin = localStorage.getItem('admin') === 'true';
+
+
+if(logeado &&  (isAdmin)){
+  
+  if (isAdmin) {
+    // Redirigir al usuario a la página /events
+    localStorage.clear();
+    toggleState(false);
+
+    window.location.href = "https://localhost:44363/";
+  }
+}else if(logeado &&  (!isAdmin)){
   return (<MiPerfil toggleState={toggleState} logeado={logeado}/>);
+
+
 }else{
 
   if(registro){

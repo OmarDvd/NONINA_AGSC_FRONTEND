@@ -9,8 +9,11 @@ export function Footer(){
 
     // Comprueba si la ubicación actual corresponde a la página de Rincones
     const isRinconesPage = location.pathname === "/rincones";
-    
+    const admin = localStorage.getItem("admin");
 
+    if (admin === "true") {
+        return null;
+      }
 
     return(
 
