@@ -1,5 +1,3 @@
-import { Footer } from "../Components/Footer";
-import NavigationBar from "../Components/NavigationBar";
 import { useEffect, useState } from "react";
 
 export function PostPage(
@@ -12,20 +10,17 @@ export function PostPage(
         if (authToken && tokenExpiration) {
             const now = Date.now();
             if (now > tokenExpiration) {
-                // El token ha expirado, limpiar localStorage
                 localStorage.clear();
                 alert("Se ha terminado la sesión");
 
-                toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+                toggleState(false); 
             } else {
-                // El token aún es válido, actualizar estado de autenticación si es necesario
-                toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+                toggleState(true); 
             }
         }
     }, []);
     return (
         <>
-        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
         <div  style={{ backgroundImage: "url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')",minHeight:"100vh" }}>
         <div class="container">
         
@@ -60,7 +55,6 @@ export function PostPage(
         <div class="container  d-flex ">
 
     
-{/* <div className="mt-5 me-5"><h1 className="granaRegular">Vocabulario granaíno</h1></div> */}
 <div className="typewriter mt-5 ms-5">
   <h1 className="grana">Una Milnoh</h1>
 </div>
@@ -68,7 +62,6 @@ export function PostPage(
         </div>
         
         
-        {/* <Footer /> */}
         
         </>
 

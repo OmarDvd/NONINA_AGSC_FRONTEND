@@ -62,9 +62,8 @@ export default function NavigationBar({ toggleState, logeado }) {
     // Obtener la URL del enlace
     const url = event.currentTarget.getAttribute('href');
     // Abrir en una nueva pestaña
-    const newWindow = window.open(url, '_blank');
-    // Asegurarse de que el nuevo contexto no pueda acceder al contexto actual
-    if (newWindow) newWindow.opener = null;
+    const newWindow = window.open(url, '_blank','noopener,noreferrer');
+
   };
 
   if (admin === "true") {
@@ -74,7 +73,7 @@ export default function NavigationBar({ toggleState, logeado }) {
   return (
     <Navbar style={{ backgroundColor: 'rgba(0, 71, 171, 1)', position: 'sticky', top: '0', zIndex: '3', display: isRinconesPage ? "none" : "block" }} variant="dark" expand="lg">
       <Container className='d-flex '>
-        <Navbar.Brand as={NavLink} to="/rincones" onClick={handleOpenInNewTab}>
+        <Navbar.Brand href="/rincones" onClick={handleOpenInNewTab}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{ height: '80px', width: '80px', marginRight: '20px', borderRadius: "50%", backgroundColor: '#ccc' }}>
               {imageLoaded ? (

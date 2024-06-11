@@ -1,6 +1,6 @@
 
 
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 
@@ -27,12 +27,7 @@ export function LogoutConfirmation({ toggleState, logeado }){
         >
           Logout
         </Nav.Link>
-        {/* {showConfirmation && (
-          <div className="confirmation-dialog">
-            <p>¿Estás seguro que deseas cerrar sesión?</p>
-            <button onClick={handleLogout}>Sí</button>
-            <button onClick={() => setShowConfirmation(false)}>No</button>
-          </div> */}
+
       </>
     );
   }

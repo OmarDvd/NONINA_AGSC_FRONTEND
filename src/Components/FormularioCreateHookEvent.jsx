@@ -3,7 +3,6 @@ import { TextField, Button, RadioGroup, FormControlLabel, Radio,Input } from '@m
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { MapaBuscar } from "../Components/MapaBuscar";
-import { Select, MenuItem } from '@mui/material';
 
 
 export function FormularioCreateHookEvent({
@@ -13,7 +12,7 @@ export function FormularioCreateHookEvent({
   const [valueMap, setValueMap] = useState('');
 
   const id = localStorage.getItem("id");
-  const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+  const token = localStorage.getItem('authToken'); 
 
 
   const [municipio, setMunicipio] = useState('cualquiera');
@@ -32,12 +31,10 @@ export function FormularioCreateHookEvent({
   
   
         const options = data.map(municipio => (
-          // <option key={municipio.id} value={municipio.name} >{municipio.name}</option>
   <option key={municipio.id} value={`${municipio.id}-${municipio.name}`}>
             {municipio.name}
           </option>
         ));
-        // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Toddos</option>);
         setMunicipioOptions(options);
         setMunicipioId(options[0].key);
       })
@@ -51,12 +48,10 @@ export function FormularioCreateHookEvent({
       .then(data => {
   
         const options = data.map(tipo => (
-          // <option key={tipo.id} value={tipo.name} >{tipo.name}</option>
   <option key={tipo.id} value={`${tipo.id}-${tipo.name}`}>
           {tipo.name}
         </option>
         ));
-        // options.unshift(<option key="cualquiera" value={["0-cualquiera"]}>Tosdos</option>);
         setTipoOptions(options);
         setTipoId(options[0].key);
 
@@ -72,7 +67,6 @@ export function FormularioCreateHookEvent({
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
 
-    // Separar el id y el name utilizando el guion medio como delimitador
     const [selectedId, selectedName] = value.split("-");
   
     // Actualizar el estado con el id y el name separados
@@ -116,9 +110,8 @@ export function FormularioCreateHookEvent({
 
     
     const createList = async (data) => {
-      const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+      const token = localStorage.getItem('authToken'); 
 
-      // Verifica si el token existe antes de continuar
       if (!token) {
           console.error('Token no encontrado. No se puede verificar la agenda.');
           return;
@@ -135,13 +128,7 @@ export function FormularioCreateHookEvent({
     }else{
       try {
 
-        // const nuevoIdCliente =   await incrementaId(); 
-  
 
-        // const clienteData = {
-        //   ...data,
-        //  // Asignar el próximo ID también al objeto cliente
-        // };
 
         const formData = new FormData();
     
@@ -159,13 +146,10 @@ export function FormularioCreateHookEvent({
     for (let pair of formData.entries()) {
       console.error(" image yeah ");
 
-      console.log(pair[0] + ': ' + pair[1]);
     }
 
 
     
-    console.log("Esto es loq ue enviamos para guardar:")
-    console.log(formData);
     const url='https://localhost:7070/api/Evento/AddEventoToken?Id=1&Title=' + encodeURIComponent(data.titulo) 
     + '&Description=' + encodeURIComponent(data.descripcion) 
     + '&PlaceLabel=' + encodeURIComponent(data.ubicacion) 
@@ -180,7 +164,6 @@ export function FormularioCreateHookEvent({
     + '&MunicipalityId='+ municipioId
     + '&CategoryId='+ tipoId 
    +'&ImageEvento=dfdf';
-    console.log(url);
 
         const response = await fetch(url, {
           method: 'POST',
@@ -236,7 +219,6 @@ export function FormularioCreateHookEvent({
         </Button>
       </label>
 
-      {/* Mostrar el nombre de la imagen seleccionada (opcional) */}
       {imagenSeleccionada && <p>{imagenSeleccionada.name}</p>}
   {errors.imagen && (
     <p role="alert" style={{ color: 'crimson' }}>Debe seleccionar una imagen</p>
@@ -254,7 +236,7 @@ export function FormularioCreateHookEvent({
       required: true,
       maxLength: 50,
     })}
-    InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+    InputProps={{ style: { color: '#333' } }} 
   />
   {errors.titulo?.type === "required" && (
     <p role="alert" style={{ color: 'crimson' }}>El título del evento es obligatorio</p>
@@ -273,7 +255,7 @@ export function FormularioCreateHookEvent({
     multiline
     rows={4}
     {...register("descripcion", { required: true })}
-    InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+    InputProps={{ style: { color: '#333' } }} 
   />
   {errors.descripcion && (
     <p role="alert" style={{ color: 'crimson' }}>La descripción del evento es obligatoria</p>
@@ -288,13 +270,12 @@ export function FormularioCreateHookEvent({
         style={{ width: '50%' }}
         size="small"
         {...register("fecha", { required: true })}
-        InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+        InputProps={{ style: { color: '#333' } }} 
       />
       {errors.fecha && (
         <p role="alert" style={{ color: 'crimson' }}>Debe seleccionar una fecha para el evento</p>
       )}
 </p>
-      {/* Campo de entrada de hora */}
       <p>
       <TextField
         id="hora"
@@ -305,13 +286,12 @@ export function FormularioCreateHookEvent({
         style={{ width: '50%' }}
         size="small"
         {...register("hora", { required: true })}
-        InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+        InputProps={{ style: { color: '#333' } }} 
       />
       {errors.hora && (
         <p role="alert" style={{ color: 'crimson' }}>Debe seleccionar una hora para el evento</p>
       )}
 </p>
-      {/* Campo de entrada de ubicación en mapa */}
       
 <p>
   <p className="mt-3 ms-4 d-block text-center">
@@ -342,13 +322,12 @@ export function FormularioCreateHookEvent({
         style={{ width: '50%' }}
         size="small"
         {...register("ubicacion", { required: true })}
-        InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+        InputProps={{ style: { color: '#333' } }} 
       />
       {errors.ubicacion && (
         <p role="alert" style={{ color: 'crimson' }}>Debe seleccionar una ubicación en el mapa para el evento</p>
       )}
 
-  {/* Agregar aquí el campo para seleccionar la ubicación en el mapa */}
 <p className="mb-2 mt-4" style={{fontSize: "1.3em", color: "#333"}} >Busca y marca abajo en el mapa para más exactitud</p>
 <MapaBuscar valueMap={valueMap} setValueMap={setValueMap}/>
 

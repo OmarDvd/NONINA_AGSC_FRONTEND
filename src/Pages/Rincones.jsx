@@ -17,14 +17,12 @@ export default function Rincones({rincones, setRincones,toggleState}) {
     if (authToken && tokenExpiration) {
         const now = Date.now();
         if (now > tokenExpiration) {
-            // El token ha expirado, limpiar localStorage
             localStorage.clear();
             alert("Se ha terminado la sesión");
 
-            toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+            toggleState(false); 
         } else {
-            // El token aún es válido, actualizar estado de autenticación si es necesario
-            toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+            toggleState(true); 
         }
     }
 }, []);
@@ -223,101 +221,10 @@ export default function Rincones({rincones, setRincones,toggleState}) {
   </div>
 </Plx>
 
-{/* 
-
-<Plx
-  parallaxData={[
-    {
-      start: 900, 
-      end: 2000, 
-      properties: [
-        {
-          startValue: 1,
-          endValue: 1, 
-          property: "scale"
-        },
-        
-            ]
-    }
-  ]}
-  style={{
-    position: "relative", 
-    left:"5%",
-    width: "85%",
-    top:"270vh",
-    zIndex: 101 
-  }}
->
-<div style={{
-    display: "flex",
-    justifyContent:"space-between"}}>
-
-<p className="granaRegular">Conoce los lugares más puros</p>
-<div style={{
-    width: "35%"}}>
-      <img style={{ width: "100%" }} src="amapola.jpg" alt="background" />
-
-      </div>
-  </div></Plx> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <Parallax strength={-600} bgImage="./fondillodos.png" style={{position:"relative",top:"400vh",zIndex:400}}>
   <div className="content">
-    {/* <div className="text-content"></div> */}
   </div>
 </Parallax>
 
@@ -359,26 +266,6 @@ export default function Rincones({rincones, setRincones,toggleState}) {
 </p>
 
   </div></Plx>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

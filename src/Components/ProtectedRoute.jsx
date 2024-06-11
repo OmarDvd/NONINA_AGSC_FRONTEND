@@ -6,7 +6,6 @@ export default  function ProtectedRoute({ condition, redirectTo, children,admin 
  
   if (!condition) {
     if (admin==="true") {
-      console.log("eeeeeee");
       window.location.href = "https://localhost:44363/";
       return null; // Retorna null para no renderizar nada mientras se redirige
     }

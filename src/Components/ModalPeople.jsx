@@ -14,7 +14,6 @@ function Modalpeople({
 
     var modalContent=modalContent;
 
-    // var stringPrepared=separateString(modalContent);
 
   const [show, setShow] = useState(false);
 
@@ -33,12 +32,7 @@ Ver      </Button>
         </Modal.Header>
         <Modal.Body>
             
-            {/* { modalContent } */}
 
-
-        {/* {stringPrepared.map((item) =>{
-            <p>item</p>})
-        } */}
 {modalContent.map(item => (
     <p>{item}</p>
 ))}

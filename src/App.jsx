@@ -1,6 +1,4 @@
 import "./styles.css";
-import Plx from "react-plx";
-import {Parallax} from "react-parallax";
 import React,{ useEffect, useState, Suspense} from "react";
 import ProtectedRoute from './Components/ProtectedRoute';
 
@@ -16,9 +14,7 @@ import NavigationBar from "./Components/NavigationBar";
 
 
 
-// import Rincones from "./Pages/Rincones";
 import Events from "./Pages/Events";
-import {Filtro} from "./Pages/Filtro";
 import {PostPage} from "./Pages/PostPage";
 import {EditEvent} from "./Pages/EditEvent";
 
@@ -135,7 +131,6 @@ if(localStorage.getItem('owner') === "true"){
 
 
 
-                {/* <Route path="/login" element={<Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />} /> */}
 
                 {/* <Route path="/postpage" element={
           <ProtectedRoute condition={owner!=="true" && admin!=="true" && logeado} redirectTo="/login" admin={admin}>
@@ -149,18 +144,11 @@ if(localStorage.getItem('owner') === "true"){
 </ProtectedRoute>
         } />
 
-{/* <Route path="/createevent" element={
-          <ProtectedRoute condition={owner && !admin} redirectTo="/login" admin={admin}>
-<CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />          
-</ProtectedRoute>
-        } /> */}
+
 
 
         
-{/* <Route path="/detalle/:eventID" element={
-          <ProtectedRoute condition={admin!=="true"} redirectTo="/detalle/:eventID" admin={admin}>
-<DetalleProductoPage logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
-        } /> */}
+
         <Route path="/detalle/:eventID" element={
 <DetalleProductoPage logeado={logeado} toggleState={toggleState}/>}/>
 
@@ -170,10 +158,6 @@ if(localStorage.getItem('owner') === "true"){
 </ProtectedRoute>
         } />
 
-{/* <Route path="/filtrar" element={
-          <ProtectedRoute condition={admin!=="true"} redirectTo="/login" admin={admin}>
-<Filtro logeado={logeado} toggleState={toggleState}/></ProtectedRoute>
-        } />               */}
 
               </Routes>
             </Suspense>
@@ -184,19 +168,5 @@ if(localStorage.getItem('owner') === "true"){
           </>
         );
 
-//         return (
-//           <Router>
-//           <Suspense fallback={<div>Loading...</div>}>
-//             {rincones ? <Rincones rincones={rincones} setRincones={setRincones}/> : <NavigationBar toggleState={toggleState} logeado={logeado} />
-// }
-//             <Routes>
-//             <Route path="/" element={<Events />} />
 
-//               <Route path="/events" element={<Events />} />
-//               <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} />} />
-//               <Route path="/login" element={<Login toggleState={toggleState} />} />
-//             </Routes>
-//           </Suspense>
-//         </Router>
-//         );
       }

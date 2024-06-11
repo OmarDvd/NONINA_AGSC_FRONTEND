@@ -1,9 +1,7 @@
 import "../styles.css";
-import NavigationBar from "../Components/NavigationBar";
 import {MiPerfil} from "../Pages/MiPerfil";
 
-import { Footer } from "../Components/Footer";
-import React,{ useEffect, useState, Suspense} from "react";
+import React,{ useEffect, useState} from "react";
 import {Registro} from "../Components/Registro";
 import { FormularioLoginHook } from "../Components/FormularioLoginHook";
 
@@ -28,14 +26,12 @@ export default function Login({toggleState,cambiarRegistro,logeado}) {
     if (authToken && tokenExpiration) {
         const now = Date.now();
         if (now > tokenExpiration) {
-            // El token ha expirado, limpiar localStorage
             localStorage.clear();
             alert("Se ha terminado la sesión");
 
-            toggleState(false); // Opcional: Cambiar el estado de autenticación a false
+            toggleState(false); 
         } else {
-            // El token aún es válido, actualizar estado de autenticación si es necesario
-            toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
+            toggleState(true); 
         }
     }
 }, []);
@@ -52,7 +48,6 @@ if(logeado){
 
   return (
     <>
-        {/* <NavigationBar toggleState={toggleState} logeado={logeado} /> */}
       <div  style={{color: "white", backgroundImage:"url('https://assets.website-files.com/5f50c8823485c166e14fc0d7/600981acad87646365032f2a_bg-paint-wall.jpg')", minHeight:"100vh"}}>
   
  <div className='container' >
@@ -69,7 +64,6 @@ if(logeado){
     <div class="container  d-flex ">
 
     
-{/* <div className="mt-5 me-5"><h1 className="granaRegular">Vocabulario granaíno</h1></div> */}
 <div className="typewriter mt-5 ms-5">
   <h1 className="grana">Malafollá</h1>
 </div>
@@ -78,7 +72,6 @@ if(logeado){
     </div>
     
     
-    {/* <Footer/>     */}
 
 
 </>

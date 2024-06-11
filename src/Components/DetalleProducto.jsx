@@ -19,12 +19,11 @@ import {CompartirEventoButton} from "./EventCard";
 
 export  const MeGustaButton = ({evento,meGusta,setMeGusta,toggleState}) => {
   
-  const usernameCaptured = localStorage.getItem("username");
 
   const [isPending, setIsPending] = useState(false);
 
 
-  async function addAgenda(username, evento) {
+  async function addAgenda( evento) {
     const token = localStorage.getItem('authToken'); // Obtén el token del local storage
 
     // Verifica si el token existe antes de continuar
@@ -80,7 +79,7 @@ export  const MeGustaButton = ({evento,meGusta,setMeGusta,toggleState}) => {
 }
 
 
-async function deleteAgenda(username, evento) {
+async function deleteAgenda( evento) {
   const token = localStorage.getItem('authToken'); // Obtén el token del local storage
 
   // Verifica si el token existe antes de continuar
@@ -155,10 +154,10 @@ const handleMeGustaClick = async  () => {
 
   if (meGusta) {
     // Llamada al backend para eliminar el registro
-    await deleteAgenda(usernameCaptured,evento);
+    await deleteAgenda(evento);
 } else {
     // Llamada al backend para crear el registro
-    await addAgenda(usernameCaptured,evento);
+    await addAgenda(evento);
 }
 
 // Actualizar el estado
@@ -201,10 +200,9 @@ export function DetalleProducto({
 
 /* GET AGENDA  */
 
-  const usernameCaptured = localStorage.getItem("username");
 
 
-  async function isSaved(username, eventID) {
+  async function isSaved( eventID) {
     const token = localStorage.getItem('authToken'); // Obtén el token del local storage
 
     // Verifica si el token existe antes de continuar
@@ -213,8 +211,6 @@ export function DetalleProducto({
         return;
     }
 
-    console.log(username);
-    console.log(eventID);
 
     const url = `https://localhost:7070/api/Agendas/${eventID}`;
 
@@ -246,7 +242,7 @@ export function DetalleProducto({
 }
 
 
-isSaved(usernameCaptured,eventID);
+isSaved(eventID);
 
 
 
@@ -275,13 +271,10 @@ useEffect(()=>{
     // aqui meteriamos un endpoint al que le pasariamos el eventID real
     get(`https://localhost:7070/api/Evento/${eventID}`)
     .then((data)=>{
-      console.log(data);
 
         setEvento( data);
-        // console.log(evento.placeCoordinates.split('latlon')[0]);
-        // console.log(evento.placeCoordinates.split('latlon')[1]);
+
       setCargando(false);
-console.log(evento);
       })},[])
 
 

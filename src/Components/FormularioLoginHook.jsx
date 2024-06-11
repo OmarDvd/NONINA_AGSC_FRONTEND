@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form"
-import { TextField, Button, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { TextField, Button} from '@mui/material';
 import { useRef } from "react";
-import jwtDecode from 'jwt-decode';
 
 
 export function FormularioLoginHook({toggleState}){
@@ -12,48 +11,8 @@ export function FormularioLoginHook({toggleState}){
     const {register,handleSubmit,formState: { errors }}=useForm();
 
     
-    // const loginFuncion =  (data) => {
-
-
-    //      fetch('https://fakestoreapi.com/auth/login',{
-    //       method:'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({
-    //         username:"mor_2314",
-    //         password:"83r5^_"
-    //       })
-    //   })
-    //   .then(res => {
-    //     console.log('Response:', res);
-    //     return res.json();
-    // })        .then(data => {
-    //       if (data.token) {
-    //         console.log(data);
-    //         toggleState(true);
-
-
-    //         formularioRef.current.reset();
-    //         // alert("Inicio de sesión exitoso");
-    //       } else {
-    //         alert("Usuario o contraseña incorrectos");
-    //       }
-    //     })
-        
-        
-        
-
-    //   .catch(error=> {
-    //     console.error("Error al crear la lista:", error);
-    //   }
-    // );}
-
-
-    
     const loginFuncion =  (data) => {
 
-      var usernameReceived=data.username;
 
       fetch('https://localhost:7070/api/Autentication/validar',{
        method:'POST',
@@ -66,33 +25,25 @@ export function FormularioLoginHook({toggleState}){
        })
    })
    .then(res => {
-     console.log('Response:', res);
      return res.json();
  })        .then(data => {
        if (data.token) {
-         console.log(data);
          toggleState(true);
 
          const expiresInMinutes = parseInt(data.expiresIn);
-         console.log(expiresInMinutes);
          const tokenExpiration = Date.now() + (expiresInMinutes * 60000);
-         console.log(tokenExpiration);
 
 
-         // Guardar el token y la hora de expiración en el localStorage
          localStorage.setItem('authToken', data.token);
          localStorage.setItem('tokenExpiration', tokenExpiration);
 
 
 
-         localStorage.setItem('name', data.name); // Guarda el token en el local storage
-         localStorage.setItem('email', data.email); // Guarda el token en el local storage
-         localStorage.setItem('owner', data.owner); // Guarda el token en el local storage
-         localStorage.setItem('admin', data.admin); // Guarda el token en el local storage
-         localStorage.setItem('authToken', data.token); // Guarda el token en el local storage
-         localStorage.setItem('id', data.id); // Guarda el token en el local storage
+         localStorage.setItem('name', data.name); 
+         localStorage.setItem('owner', data.owner); 
+         localStorage.setItem('admin', data.admin); 
+         localStorage.setItem('authToken', data.token);
 
-         localStorage.setItem('username', usernameReceived); // Guarda el token en el local storage
 
 
          formularioRef.current.reset();
@@ -126,8 +77,7 @@ export function FormularioLoginHook({toggleState}){
   style={{ width: '50%' }}
   size="small"
   {...register("username", { required: true })}
-  InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
-
+  InputProps={{ style: { color: '#333' } }} 
 />
 
 <TextField
@@ -139,7 +89,7 @@ export function FormularioLoginHook({toggleState}){
   size="small"
   type="password"
   {...register("password", { required: true })}
-  InputProps={{ style: { color: '#333' } }} // Estilo para el texto del input
+  InputProps={{ style: { color: '#333' } }}
 
 />
 

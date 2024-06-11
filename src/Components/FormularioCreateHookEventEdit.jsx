@@ -1,29 +1,25 @@
 import { useForm } from "react-hook-form";
-import { TextField, Button,RadioGroup, FormControlLabel, Radio,Input } from '@mui/material';
+import { TextField, Button} from '@mui/material';
 import { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MapaBuscar } from "../Components/MapaBuscar";
-import { Select, MenuItem } from '@mui/material';
+
 import { Spinner } from "./Spinner";
 
 
 export function FormularioCreateHookEventEdit({ toggleState}) {
   const formularioRef = useRef(null);
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
   let { eventID } = useParams();
-  const [valueMap, setValueMap] = useState('');
   const [cargando,setCargando]=useState(true);
 
   const [actualizado,setActualizado]=useState(false);
 
   const id = localStorage.getItem("id");
-  const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+  const token = localStorage.getItem('authToken'); 
 
 
 
   useEffect(() => {
-    console.log("wwwww");
 
     if (eventID) {
       fetch(`https://localhost:7070/api/Evento/${eventID}`)
@@ -34,7 +30,6 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
           setValue("fecha", data.date);
           setValue("hora", data.time);
           setValue("ubicacion", data.placeLabel.trim());
-  console.log(data);
   setCargando(false);
         })
         .catch(error => {
@@ -51,9 +46,8 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
   
 
   const editList = async (data) => {
-    const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+    const token = localStorage.getItem('authToken'); 
 
-    // Verifica si el token existe antes de continuar
     if (!token) {
         console.error('Token no encontrado. No se puede verificar la agenda.');
         return;
@@ -84,7 +78,7 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
 + '&minute=' + data.hora.slice(3, 5) , {
         method: 'PUT', 
         headers: {
-          'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
+          'Authorization': `Bearer ${token}` 
       },
       mode: 'cors'
       });
@@ -95,7 +89,6 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
 
       const responseData = await response.json();
       alert("Evento editado");
-      // formularioRef.current.reset();
 setActualizado(!actualizado);
     } catch (error) {
       console.error("Error al editar la lista:", error);

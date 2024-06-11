@@ -12,8 +12,6 @@ export function FormularioCreateHook(){
     const createList = async (data) => {
       try {
 
-console.log("eee el rol");
-console.log( data.role);
         const body = {
           name: data.nombre,
           surname: data.apellidos,

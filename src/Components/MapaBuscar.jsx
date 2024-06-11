@@ -34,7 +34,6 @@ export function MapaBuscar({
     
       // Llamamos a setValueMap con la cadena formateada
       setValueMap(formattedString);
-      console.log(coordenadas);
     }
   
     return (

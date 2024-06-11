@@ -2,14 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import "../styles.css";
-import { FaHeart } from 'react-icons/fa';
-import { useEffect, useState, Suspense} from "react";
-import { FaShare } from 'react-icons/fa';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import { FaUsers } from 'react-icons/fa';
-import { FaHandshake } from 'react-icons/fa';
 import { FaShareAlt } from 'react-icons/fa';
-import {MapCoordinates} from "./MapCoordinates"
 
 
 
@@ -80,11 +73,7 @@ export function EventCard({
       <Card.Text className="cardText">{activity.municipalityName}</Card.Text>
     </Card.Body>
   </Link>
-  {/* <div className="cardFooter">
-    {logeado && <MeGustaButton evento={activity} meGusta={meGusta} setMeGusta={setMeGusta}/>}
-    <CompartirEventoButton evento={activity} />
-    {logeado && <QuieroConocerGente />}
-  </div> */}
+
 </Card>
 );
 }

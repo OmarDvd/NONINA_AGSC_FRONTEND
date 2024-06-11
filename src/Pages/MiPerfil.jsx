@@ -12,36 +12,15 @@ export function MiPerfil({ toggleState, logeado }) {
     const [cargando, setCargando] = useState(true);
     const owner = localStorage.getItem("owner");
     const id = localStorage.getItem("id");
-    const token = localStorage.getItem('authToken'); // Obtén el token del local storage
+    const token = localStorage.getItem('authToken'); 
     const [items, setItems] = useState([]);
 
-
-    // useEffect(() => {
-    //     const authToken = localStorage.getItem('authToken');
-    //     const tokenExpiration = localStorage.getItem('tokenExpiration');
-    
-    //     if (authToken && tokenExpiration) {
-    //         const now = Date.now();
-    //         if (now > tokenExpiration) {
-    //             // El token ha expirado, limpiar localStorage
-    //             localStorage.clear();
-    //             alert("Se ha terminado la sesión");
-
-    //             toggleState(false); // Opcional: Cambiar el estado de autenticación a false
-    //         } else {
-    //             // El token aún es válido, actualizar estado de autenticación si es necesario
-    //             toggleState(true); // Opcional: Cambiar el estado de autenticación a true si el usuario ya ha iniciado sesión
-    //         }
-    //     }
-    // }, []);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 let response;
-                console.log(owner);
                 if (owner === "true") {
-                    console.log("ownerrrrrrrr");
 
                     if (!token) {
                         console.error('Token no encontrado. No se puede verificar la agenda.');
@@ -50,25 +29,23 @@ export function MiPerfil({ toggleState, logeado }) {
                     response = await fetch(`https://localhost:7070/api/Evento/GetEventosUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
+                            'Authorization': `Bearer ${token}` 
                         },
                         mode: 'cors'
                     });
                 } else {
-                    console.log("clienteeee");
 
                     response = await fetch(`https://localhost:7070/api/Agendas/GetAgendasUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}` // Agrega el token a los encabezados
+                            'Authorization': `Bearer ${token}` 
                         },
                         mode: 'cors'
                     });
                 }
 
                 const data = await response.json();
-                console.log(data);
-                console.log("estos son mis datos");
+
                 setItems(data);
                 setCargando(false);
             } catch (error) {
@@ -77,12 +54,8 @@ export function MiPerfil({ toggleState, logeado }) {
         };
 
         fetchData();
-    }, []); // El array vacío [] significa que este efecto se ejecuta una sola vez al montar el componente
+    }, []); 
 
-    const handleEdit = (id) => {
-        // Aquí iría la lógica para editar el evento
-        console.log('Editar evento con id:', id);
-    };
 
     const handleDelete = async (id) => {
 
@@ -100,18 +73,13 @@ export function MiPerfil({ toggleState, logeado }) {
               const token = localStorage.getItem('authToken');
               const username = localStorage.getItem('username');
   
-              // Verifica si el token existe antes de continuar
               if (!token) {
                   console.error('Token no encontrado. No se puede verificar la agenda.');
                   return;
               }
   
-              console.log("Este es el id de borrar en mi perfil", id);
   
-              // const body = {
-              //     username: username,
-              //     eventoId: id
-              // };
+ 
   
       
   
@@ -152,7 +120,6 @@ export function MiPerfil({ toggleState, logeado }) {
                       }
                       alert("Evento eliminado con éxito");
                   } else {
-                      console.log(response);
                       alert("Error al eliminar el evento");
                   }
               } catch (error) {
