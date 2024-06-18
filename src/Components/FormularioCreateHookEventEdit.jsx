@@ -22,7 +22,7 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
   useEffect(() => {
 
     if (eventID) {
-      fetch(`https://localhost:7070/api/Evento/${eventID}`)
+      fetch(`https://noninabackendapi.work.gd/api/Evento/${eventID}`)
         .then(response => response.json())
         .then(data => {
           setValue("titulo", data.title.trim());
@@ -65,7 +65,7 @@ export function FormularioCreateHookEventEdit({ toggleState}) {
     try {
 
 
-      const response = await fetch('https://localhost:7070/api/Evento/UpdateEventoToken?Id='+eventID
+      const response = await fetch('https://noninabackendapi.work.gd/api/Evento/UpdateEventoToken?Id='+eventID
         +'&Title=' + encodeURIComponent(data.titulo) 
         + '&Description=' + encodeURIComponent(data.descripcion) 
         + '&PlaceLabel=' + encodeURIComponent(data.ubicacion)      

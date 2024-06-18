@@ -25,7 +25,7 @@ export function FormularioCreateHook(){
 
         };
 
-        const response = await fetch('https://localhost:7070/api/Users', {
+        const response = await fetch('https://noninabackendapi.work.gd/api/Users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

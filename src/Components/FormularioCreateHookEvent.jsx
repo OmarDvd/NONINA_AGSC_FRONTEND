@@ -25,7 +25,7 @@ export function FormularioCreateHookEvent({
 
 
   useEffect(() => {
-    fetch('https://localhost:7070/api/Municipalities')
+    fetch('https://noninabackendapi.work.gd/api/Municipalities')
       .then(response => response.json())
       .then(data => {
   
@@ -43,7 +43,7 @@ export function FormularioCreateHookEvent({
   
 
   useEffect(() => {
-    fetch('https://localhost:7070/api/Categories')
+    fetch('https://noninabackendapi.work.gd/api/Categories')
       .then(response => response.json())
       .then(data => {
   
@@ -150,7 +150,7 @@ export function FormularioCreateHookEvent({
 
 
     
-    const url='https://localhost:7070/api/Evento/AddEventoToken?Id=1&Title=' + encodeURIComponent(data.titulo) 
+    const url='https://noninabackendapi.work.gd/api/Evento/AddEventoToken?Id=1&Title=' + encodeURIComponent(data.titulo) 
     + '&Description=' + encodeURIComponent(data.descripcion) 
     + '&PlaceLabel=' + encodeURIComponent(data.ubicacion) 
     + '&PlaceCoordinates=' + valueMap

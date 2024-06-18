@@ -46,7 +46,7 @@ if(logeado &&  (isAdmin)){
     localStorage.clear();
     toggleState(false);
 
-    window.location.href = "https://localhost:44363/";
+    window.location.href = "https://noninabackendmvc.work.gd";
   }
 }else if(logeado &&  (!isAdmin)){
   return (<MiPerfil toggleState={toggleState} logeado={logeado}/>);

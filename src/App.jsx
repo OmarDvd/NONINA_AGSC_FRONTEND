@@ -100,14 +100,11 @@ if(localStorage.getItem('owner') === "true"){
         }
         return (
           <>
-
           <Router>
           <NavigationBar toggleState={toggleState} logeado={logeado} />
           <ScrollToTop /> 
             <Suspense fallback={<div>Loading...</div>}>
-              
               <Routes>
-                
               <Route path="/" element={
           <ProtectedRoute condition={owner!=="true" && admin!=="true"} redirectTo="/login" admin={admin}>
             <Events toggleState={toggleState} logeado={logeado} />
@@ -118,37 +115,17 @@ if(localStorage.getItem('owner') === "true"){
             <Events toggleState={toggleState} logeado={logeado} />
           </ProtectedRoute>
         } />
-
-
                 <Route path="/rincones" element={<Rincones rincones={rincones} setRincones={setRincones} toggleState={toggleState} />} />
-
-
                 <Route path="/login" element={
           <ProtectedRoute condition={true===true} redirectTo="/login" admin={admin}>
                 <Login logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
           </ProtectedRoute>
         } />
-
-
-
-
-                {/* <Route path="/postpage" element={
-          <ProtectedRoute condition={owner!=="true" && admin!=="true" && logeado} redirectTo="/login" admin={admin}>
-            <PostPage logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />
-          </ProtectedRoute>
-        } /> */}
-
 <Route path="/createevent" element={
           <ProtectedRoute condition={owner==="true" && admin!=="true"} redirectTo="/login" admin={admin}>
 <CreateEvent logeado={logeado} toggleState={toggleState} cambiarRegistro={cambiarRegistro} />          
 </ProtectedRoute>
         } />
-
-
-
-
-        
-
         <Route path="/detalle/:eventID" element={
 <DetalleProductoPage logeado={logeado} toggleState={toggleState}/>}/>
 
@@ -157,9 +134,7 @@ if(localStorage.getItem('owner') === "true"){
 <EditEvent logeado={logeado} toggleState={toggleState}/>
 </ProtectedRoute>
         } />
-
-
-              </Routes>
+ </Routes>
             </Suspense>
             <Footer />
 
