@@ -106,7 +106,7 @@ export function EventsGrid({
 
 
 useEffect(() => {
-  fetch('https://noninabackendapigr.work.gd/api/Municipalities')
+  fetch('https://noninabackendapi.work.gd/api/Municipalities')
     .then(response => response.json())
     .then(data => {
 
@@ -123,7 +123,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch('https://noninabackendapigr.work.gd/api/Categories')
+  fetch('https://noninabackendapi.work.gd/api/Categories')
     .then(response => response.json())
     .then(data => {
 
@@ -243,10 +243,10 @@ useEffect(() => {
 
 
       if(selectedDate !=null){
-        url=`https://noninabackendapigr.work.gd/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate.toISOString().split('T')[0]}&limit=${limit}&offset=${offset}`;
+        url=`https://noninabackendapi.work.gd/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate.toISOString().split('T')[0]}&limit=${limit}&offset=${offset}`;
 
       }else{
-        url=`https://noninabackendapigr.work.gd/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate}&limit=${limit}&offset=${offset}`;
+        url=`https://noninabackendapi.work.gd/api/Evento/allDepend/?municipalityId=${municipioId}&categoryId=${tipoId}&date=${selectedDate}&limit=${limit}&offset=${offset}`;
 
       }
 
