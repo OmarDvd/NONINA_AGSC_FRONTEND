@@ -38,7 +38,8 @@ export function FormularioLoginHook({toggleState}){
          localStorage.setItem('tokenExpiration', tokenExpiration);
          document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
-         document.cookie = `authToken=${data.token}; expires=${new Date(tokenExpiration).toUTCString()}; path=/`;
+        //  document.cookie = `authToken=${data.token}; expires=${new Date(tokenExpiration).toUTCString()}; path=/`;
+         document.cookie = `authToken=${data.token}; Secure; SameSite=None; expires=${new Date(tokenExpiration).toUTCString()}; path=/`;
 
  // Establecer la cookie con el token
 //  document.cookie = `authToken=${data.token}; expires=${new Date(tokenExpiration).toUTCString()}; secure; httpOnly`;

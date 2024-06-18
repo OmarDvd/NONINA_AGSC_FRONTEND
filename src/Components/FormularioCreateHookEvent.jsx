@@ -9,6 +9,29 @@ export function FormularioCreateHookEvent({
   toggleState
 }){
 
+
+// Función para obtener el valor de una cookie específica por su nombre
+function getCookie(name) {
+  const cookieName = name + "=";
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+      if (cookie.indexOf(cookieName) === 0) {
+          return cookie.substring(cookieName.length, cookie.length);
+      }
+  }
+  
+  return null; // Retorna null si la cookie no se encuentra
+}
+
+// Obtener el valor de la cookie 'authToken'
+const authToken = getCookie('authToken');
+
+  
+  
+
+
   const [valueMap, setValueMap] = useState('');
 
   const id = localStorage.getItem("id");
@@ -169,7 +192,7 @@ export function FormularioCreateHookEvent({
           method: 'POST',
 
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${authToken}`,
             },
             mode: 'cors',
 
