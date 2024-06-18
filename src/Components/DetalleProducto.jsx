@@ -46,7 +46,7 @@ export  const MeGustaButton = ({evento,meGusta,setMeGusta,toggleState}) => {
     
 
 
-    const url = 'https://noninabackendapi.work.gd/api/Agendas/AddAgendaToken';
+    const url = 'https://noninabackendapigr.work.gd/api/Agendas/AddAgendaToken';
 
 
     try {
@@ -100,7 +100,7 @@ async function deleteAgenda( evento) {
 
 
 
-  const url = 'https://noninabackendapi.work.gd/api/Agendas/DeleteAgendaToken';
+  const url = 'https://noninabackendapigr.work.gd/api/Agendas/DeleteAgendaToken';
 
   try {
       const response = await fetch(url, {
@@ -212,7 +212,7 @@ export function DetalleProducto({
     }
 
 
-    const url = `https://noninabackendapi.work.gd/api/Agendas/${eventID}`;
+    const url = `https://noninabackendapigr.work.gd/api/Agendas/${eventID}`;
 
 
     try {
@@ -269,7 +269,7 @@ isSaved(eventID);
 
 useEffect(()=>{ 
     // aqui meteriamos un endpoint al que le pasariamos el eventID real
-    get(`https://noninabackendapi.work.gd/api/Evento/${eventID}`)
+    get(`https://noninabackendapigr.work.gd/api/Evento/${eventID}`)
     .then((data)=>{
 
         setEvento( data);

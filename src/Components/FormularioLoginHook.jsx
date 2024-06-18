@@ -14,7 +14,7 @@ export function FormularioLoginHook({toggleState}){
     const loginFuncion =  (data) => {
 
 
-      fetch('https://noninabackendapi.work.gd/api/Autentication/validar',{
+      fetch('https://noninabackendapigr.work.gd/api/Autentication/validar',{
        method:'POST',
        headers: {
          'Content-Type': 'application/json',

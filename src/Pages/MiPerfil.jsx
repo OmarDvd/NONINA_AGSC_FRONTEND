@@ -26,7 +26,7 @@ export function MiPerfil({ toggleState, logeado }) {
                         console.error('Token no encontrado. No se puede verificar la agenda.');
                         return;
                     }
-                    response = await fetch(`https://noninabackendapi.work.gd/api/Evento/GetEventosUserToken`, {
+                    response = await fetch(`https://noninabackendapigr.work.gd/api/Evento/GetEventosUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}` 
@@ -35,7 +35,7 @@ export function MiPerfil({ toggleState, logeado }) {
                     });
                 } else {
 
-                    response = await fetch(`https://noninabackendapi.work.gd/api/Agendas/GetAgendasUserToken`, {
+                    response = await fetch(`https://noninabackendapigr.work.gd/api/Agendas/GetAgendasUserToken`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}` 
@@ -87,7 +87,7 @@ export function MiPerfil({ toggleState, logeado }) {
               let response;
               try {
                   if (owner === "true") {
-                      response = await fetch(`https://noninabackendapi.work.gd/api/Evento/DeleteEventoToken`, {
+                      response = await fetch(`https://noninabackendapigr.work.gd/api/Evento/DeleteEventoToken`, {
                           method: 'DELETE',
                           headers: {
                               'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export function MiPerfil({ toggleState, logeado }) {
   
                       });
                   } else {
-                      response = await fetch(`https://noninabackendapi.work.gd/api/Agendas/DeleteAgendaToken`, {
+                      response = await fetch(`https://noninabackendapigr.work.gd/api/Agendas/DeleteAgendaToken`, {
                           method: 'DELETE',
                           headers: {
                               'Content-Type': 'application/json',

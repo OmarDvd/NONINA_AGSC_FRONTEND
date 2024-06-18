@@ -19,7 +19,7 @@ const authToken = getCookie('authToken');
   if (!condition) {
     if (admin==="true") {
       localStorage.clear();
-      window.location.href = "https://noninabackendmvc.work.gd";
+      window.location.href = "https://noninabackendmvcgr.work.gd";
       return null; // Retorna null para no renderizar nada mientras se redirige
     }
     return <Navigate to={redirectTo} />;
